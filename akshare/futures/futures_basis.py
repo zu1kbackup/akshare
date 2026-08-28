@@ -2,15 +2,15 @@
 # -*- coding:utf-8 -*-
 """
 Date: 2024/12/12 17:00
-Desc: 生意社网站采集大宗商品现货价格及相应基差数据, 数据时间段从 20110104-至今
-备注：现期差 = 现货价格 - 期货价格(这里的期货价格为结算价)
-黄金为 元/克, 白银为 元/千克, 玻璃现货为 元/平方米, 鸡蛋现货为 元/公斤, 鸡蛋期货为 元/500千克, 其余为 元/吨.
-焦炭现货规格是: 一级冶金焦; 焦炭期货规格: 介于一级和二级之间, 焦炭现期差仅供参考.
-铁矿石现货价格是: 湿吨, 铁矿石期货价格是: 干吨
-网页地址: https://www.100ppi.com/sf/
-历史数据可以通过修改 url 地址来获取, 比如: https://www.100ppi.com/sf/day-2017-09-12.html
+Desc: 生意社网站采集大宗商品现货价格及相应基差数据，数据时间段从 20110104-至今
+备注：现期差 = 现货价格 - 期货价格（这里的期货价格为结算价）
+黄金为 元/克，白银为 元/千克，玻璃现货为 元/平方米，鸡蛋现货为 元/公斤，鸡蛋期货为 元/500千克，其余为 元/吨。
+焦炭现货规格是：一级冶金焦；焦炭期货规格：介于一级和二级之间，焦炭现期差仅供参考。
+铁矿石现货价格是：湿吨，铁矿石期货价格是：干吨
+网页地址：https://www.100ppi.com/sf/
+历史数据可以通过修改 url 地址来获取，比如：https://www.100ppi.com/sf/day-2017-09-12.html
 发现生意社的 bugs:
-1. 2018-09-12 周三 数据缺失是因为生意社源数据在该交易日缺失: https://www.100ppi.com/sf/day-2018-09-12.html
+1. 2018-09-12 周三 数据缺失是因为生意社源数据在该交易日缺失：https://www.100ppi.com/sf/day-2018-09-12.html
 """
 
 import datetime
@@ -36,12 +36,12 @@ def futures_spot_price_daily(
     """
     指定时间段内大宗商品现货价格及相应基差
     https://www.100ppi.com/sf/
-    :param start_day: str 开始日期 format：YYYY-MM-DD 或 YYYYMMDD 或 datetime.date对象; 默认为当天
-    :param end_day: str 结束数据 format：YYYY-MM-DD 或 YYYYMMDD 或 datetime.date对象; 默认为当天
-    :param vars_list: list 合约品种如 [RB, AL]; 默认参数为所有商品
+    :param start_day: str 开始日期 format: YYYY-MM-DD 或 YYYYMMDD 或 datetime.date对象；默认为当天
+    :param end_day: str 结束数据 format: YYYY-MM-DD 或 YYYYMMDD 或 datetime.date对象；默认为当天
+    :param vars_list: list 合约品种如 [RB, AL]；默认参数为所有商品
     :return: 基差
     :rtype: pandas.DataFrame
-    展期收益率数据:
+    展期收益率数据：
     var               商品品种                      string
     sp                现货价格                      float
     near_symbol       临近交割合约                  string
@@ -82,10 +82,10 @@ def futures_spot_price(
     """
     指定交易日大宗商品现货价格及相应基差
     https://www.100ppi.com/sf/day-2017-09-12.html
-    :param date: 开始日期 format: YYYY-MM-DD 或 YYYYMMDD 或 datetime.date 对象; 为空时为当天
+    :param date: 开始日期 format: YYYY-MM-DD 或 YYYYMMDD 或 datetime.date 对象；为空时为当天
     :param vars_list: 合约品种如 RB、AL 等列表 为空时为所有商品
     :return: pandas.DataFrame
-    展期收益率数据:
+    展期收益率数据：
     var              商品品种                     string
     sp               现货价格                     float
     near_symbol      临近交割合约                  string
@@ -107,7 +107,7 @@ def futures_spot_price(
         warnings.warn(f"{date.strftime('%Y%m%d')}非交易日")
         return pd.DataFrame()
     u1 = "https://www.100ppi.com/sf/"
-    u2 = f'https://www.100ppi.com/sf/day-{date.strftime("%Y-%m-%d")}.html'
+    u2 = f"https://www.100ppi.com/sf/day-{date.strftime('%Y-%m-%d')}.html"
     i = 1
     while True:
         for url in [u2, u1]:
@@ -115,7 +115,7 @@ def futures_spot_price(
                 # url = u2
                 headers = {
                     "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,"
-                              "image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7"
+                    "image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7"
                 }
                 r = pandas_read_html_link(url, headers=headers)
                 string = r[0].loc[1, 1]
@@ -198,18 +198,18 @@ def _check_information(df_data, date):
             symbol = chinese_to_english(news)
             record = pd.DataFrame(df_data[df_data["symbol"] == string])
             record.loc[:, "symbol"] = symbol
-            record.loc[:, "spot_price"] = record.loc[:, "spot_price"].astype(float)
+            record["spot_price"] = record["spot_price"].astype(float)
             if (
                 symbol == "JD"
-            ):  # 鸡蛋现货为元/公斤, 鸡蛋期货为元/500千克, 其余元/吨(http://www.100ppi.com/sf/)
+            ):  # 鸡蛋现货为元/公斤，鸡蛋期货为元/500千克，其余元/吨(http://www.100ppi.com/sf/)
                 record.loc[:, "spot_price"] = float(record["spot_price"].iloc[0]) * 500
             elif (
                 symbol == "FG"
-            ):  # 上表中现货单位为元/平方米, 期货单位为元/吨. 换算公式：元/平方米*80=元/吨(http://www.100ppi.com/sf/959.html)
+            ):  # 上表中现货单位为元/平方米，期货单位为元/吨。换算公式：元/平方米*80=元/吨(http://www.100ppi.com/sf/959.html)
                 record.loc[:, "spot_price"] = float(record["spot_price"].iloc[0]) * 80
             elif (
                 symbol == "LH"
-            ):  # 上表中现货单位为元/公斤, 期货单位为元/吨. 换算公式：元/公斤*1000=元/吨(http://www.100ppi.com/sf/959.html)
+            ):  # 上表中现货单位为元/公斤，期货单位为元/吨。换算公式：元/公斤*1000=元/吨(http://www.100ppi.com/sf/959.html)
                 record.loc[:, "spot_price"] = float(record["spot_price"].iloc[0]) * 1000
             records = pd.concat([records, record])
 
@@ -223,49 +223,53 @@ def _check_information(df_data, date):
         records["date"] = pd.Series(dtype="object")
         return records
 
-    records.loc[:, ["near_contract_price", "dominant_contract_price", "spot_price"]] = (
-        records.loc[
-            :, ["near_contract_price", "dominant_contract_price", "spot_price"]
-        ].astype("float")
-    )
+    records[["near_contract_price", "dominant_contract_price", "spot_price"]] = records[
+        ["near_contract_price", "dominant_contract_price", "spot_price"]
+    ].astype("float")
 
-    records.loc[:, "near_contract"] = records["near_contract"].replace(
+    records["near_contract"] = records["near_contract"].replace(
         r"[^0-9]*(\d*)$", r"\g<1>", regex=True
     )
-    records.loc[:, "dominant_contract"] = records["dominant_contract"].replace(
+    records["dominant_contract"] = records["dominant_contract"].replace(
         r"[^0-9]*(\d*)$", r"\g<1>", regex=True
     )
 
-    records.loc[:, "near_month"] = records.loc[:, "near_contract"]
-    records.loc[:, "near_contract"] = records["symbol"] + records.loc[
+    records["near_month"] = records.loc[:, "near_contract"]
+    records["near_contract"] = records["symbol"] + records.loc[
         :, "near_contract"
     ].astype("int").astype("str")
-    records.loc[:, "dominant_month"] = records.loc[:, "dominant_contract"]
-    records.loc[:, "dominant_contract"] = records["symbol"] + records.loc[
+    records["dominant_month"] = records.loc[:, "dominant_contract"]
+    records["dominant_contract"] = records["symbol"] + records.loc[
         :, "dominant_contract"
     ].astype("int").astype("str")
 
     records["near_contract"] = records["near_contract"].apply(
-        lambda x: x.lower()
-        if x[:-4]
-        in cons.market_exchange_symbols["shfe"] + cons.market_exchange_symbols["dce"]
-        else x
+        lambda x: (
+            x.lower()
+            if x[:-4]
+            in cons.market_exchange_symbols["shfe"]
+            + cons.market_exchange_symbols["dce"]
+            else x
+        )
     )
-    records.loc[:, "dominant_contract"] = records.loc[:, "dominant_contract"].apply(
-        lambda x: x.lower()
-        if x[:-4]
-        in cons.market_exchange_symbols["shfe"] + cons.market_exchange_symbols["dce"]
-        else x
+    records["dominant_contract"] = records["dominant_contract"].apply(
+        lambda x: (
+            x.lower()
+            if x[:-4]
+            in cons.market_exchange_symbols["shfe"]
+            + cons.market_exchange_symbols["dce"]
+            else x
+        )
     )
-    records.loc[:, "near_contract"] = records.loc[:, "near_contract"].apply(
-        lambda x: x[:-4] + x[-3:]
-        if x[:-4] in cons.market_exchange_symbols["czce"]
-        else x
+    records["near_contract"] = records["near_contract"].apply(
+        lambda x: (
+            x[:-4] + x[-3:] if x[:-4] in cons.market_exchange_symbols["czce"] else x
+        )
     )
-    records.loc[:, "dominant_contract"] = records.loc[:, "dominant_contract"].apply(
-        lambda x: x[:-4] + x[-3:]
-        if x[:-4] in cons.market_exchange_symbols["czce"]
-        else x
+    records["dominant_contract"] = records["dominant_contract"].apply(
+        lambda x: (
+            x[:-4] + x[-3:] if x[:-4] in cons.market_exchange_symbols["czce"] else x
+        )
     )
 
     records["near_basis"] = records["near_contract_price"] - records["spot_price"]
@@ -278,6 +282,7 @@ def _check_information(df_data, date):
     )
     # records.loc[:, "date"] = date.strftime("%Y%m%d")
     records.insert(0, "date", date.strftime("%Y%m%d"))
+    records.reset_index(inplace=True, drop=True)
     return records
 
 
@@ -296,7 +301,7 @@ def futures_spot_price_previous(date: str = "20240430") -> pd.DataFrame:
     """
     具体交易日大宗商品现货价格及相应基差
     https://www.100ppi.com/sf/day-2017-09-12.html
-    :param date: 交易日; 历史日期
+    :param date: 交易日；历史日期
     :type date: str
     :return: 现货价格及相应基差
     :rtype: pandas.DataFrame
@@ -312,7 +317,7 @@ def futures_spot_price_previous(date: str = "20240430") -> pd.DataFrame:
     url = date.strftime("https://www.100ppi.com/sf2/day-%Y-%m-%d.html")
     headers = {
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,"
-                  "image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7"
+        "image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7"
     }
     content = pandas_read_html_link(url, headers=headers)
     main = content[1]
@@ -329,7 +334,8 @@ def futures_spot_price_previous(date: str = "20240430") -> pd.DataFrame:
         basis = pd.DataFrame(columns=["主力合约基差", "主力合约基差(%)"])
 
     basis.columns = ["主力合约基差", "主力合约基差(%)"]
-    # 20241125(jasonudu)：因为部分日期，存在多个品种的现货价格，比如20151125的白糖、豆粕、豆油等，如果用商品名来merge，会出现重复列名，所以改用index来merge
+    # 20241125(jasonudu)：因为部分日期，存在多个品种的现货价格，比如20151125的白糖、豆粕、豆油等，
+    # 如果用商品名来merge，会出现重复列名，所以改用index来merge
     # basis["商品"] = values["商品"].tolist()
     basis.index = values.index
     basis = pd.merge(
@@ -362,16 +368,17 @@ def futures_spot_price_previous(date: str = "20240430") -> pd.DataFrame:
         "180日内主力基差平均",
     ]
     basis["主力合约变动百分比"] = basis["主力合约变动百分比"].str.strip("%")
+    basis.reset_index(inplace=True, drop=True)
     return basis
 
 
 if __name__ == "__main__":
     futures_spot_price_daily_df = futures_spot_price_daily(
-        start_day="20250708", end_day="20250709", vars_list=["BZ", "RB"]
+        start_day="20260303", end_day="20260303", vars_list=["PL"]
     )
     print(futures_spot_price_daily_df)
 
-    futures_spot_price_df = futures_spot_price(date="20250620")
+    futures_spot_price_df = futures_spot_price(date="20260303")
     print(futures_spot_price_df)
 
     futures_spot_price_previous_df = futures_spot_price_previous(date="20240430")

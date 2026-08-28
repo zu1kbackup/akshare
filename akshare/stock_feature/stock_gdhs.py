@@ -16,7 +16,7 @@ def stock_zh_a_gdhs(symbol: str = "20230930") -> pd.DataFrame:
     """
     东方财富网-数据中心-特色数据-股东户数
     https://data.eastmoney.com/gdhs/
-    :param symbol: choice of {"最新", "每个季度末"}, 其中 每个季度末需要写成 `20230930` 格式
+    :param symbol: choice of {"最新", "每个季度末"}，其中 每个季度末需要写成 `20230930` 格式
     :type symbol: str
     :return: 股东户数
     :rtype: pandas.DataFrame
@@ -223,7 +223,7 @@ def stock_zh_a_gdhs_detail_em(symbol: str = "000001") -> pd.DataFrame:
     big_df["股东户数公告日期"] = pd.to_datetime(
         big_df["股东户数公告日期"], errors="coerce"
     ).dt.date
-    big_df.sort_values(by=['股东户数统计截止日'], ignore_index=True, inplace=True)
+    big_df.sort_values(by=["股东户数统计截止日"], ignore_index=True, inplace=True)
     return big_df
 
 

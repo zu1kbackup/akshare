@@ -14,12 +14,14 @@ def futures_contract_info_shfe(date: str = "20240513") -> pd.DataFrame:
     """
     上海期货交易所-交易所服务-业务数据-交易参数汇总查询
     https://tsite.shfe.com.cn/bourseService/businessdata/summaryinquiry/
-    :param date: 查询日期; 交易日
+    :param date: 查询日期；交易日
     :type date: str
     :return: 交易参数汇总查询
     :rtype: pandas.DataFrame
     """
-    url = f"https://www.shfe.com.cn/data/busiparamdata/future/ContractBaseInfo{date}.dat"
+    url = (
+        f"https://www.shfe.com.cn/data/busiparamdata/future/ContractBaseInfo{date}.dat"
+    )
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) "
         "Chrome/119.0.0.0 Safari/537.36"
@@ -60,7 +62,7 @@ def futures_contract_info_shfe(date: str = "20240513") -> pd.DataFrame:
     ).dt.date
     temp_df["交易日"] = pd.to_datetime(temp_df["交易日"], errors="coerce").dt.date
     temp_df["挂牌基准价"] = pd.to_numeric(temp_df["挂牌基准价"], errors="coerce")
-    temp_df["更新时间"] = data_json['update_date']
+    temp_df["更新时间"] = data_json["update_date"]
     return temp_df
 
 

@@ -19,7 +19,7 @@ def _stock_balance_sheet_by_report_ctype_em(symbol: str = "SH600519") -> str:
     """
     东方财富-股票-财务分析-资产负债表-按报告期-公司类型判断
     https://emweb.securities.eastmoney.com/PC_HSF10/NewFinanceAnalysis/Index?type=web&code=sh601878#zcfzb-0
-    :param symbol: 股票代码; 带市场标识
+    :param symbol: 股票代码；带市场标识
     :type symbol: str
     :return: 东方财富-股票-财务分析-资产负债表-按报告期-公司类型判断
     :rtype: str
@@ -36,7 +36,7 @@ def stock_balance_sheet_by_report_em(symbol: str = "SH600519") -> pd.DataFrame:
     """
     东方财富-股票-财务分析-资产负债表-按报告期
     https://emweb.securities.eastmoney.com/PC_HSF10/NewFinanceAnalysis/Index?type=web&code=sh600519#lrb-0
-    :param symbol: 股票代码; 带市场标识
+    :param symbol: 股票代码；带市场标识
     :type symbol: str
     :return: 资产负债表-按报告期
     :rtype: pandas.DataFrame
@@ -85,7 +85,7 @@ def stock_balance_sheet_by_yearly_em(symbol: str = "SH600036") -> pd.DataFrame:
     """
     东方财富-股票-财务分析-资产负债表-按年度
     https://emweb.securities.eastmoney.com/PC_HSF10/NewFinanceAnalysis/Index?type=web&code=sh600519#lrb-0
-    :param symbol: 股票代码; 带市场标识
+    :param symbol: 股票代码；带市场标识
     :type symbol: str
     :return: 资产负债表-按年度
     :rtype: pandas.DataFrame
@@ -102,7 +102,7 @@ def stock_balance_sheet_by_yearly_em(symbol: str = "SH600036") -> pd.DataFrame:
     try:
         temp_df = pd.DataFrame(data_json["data"])
     except:  # noqa: E722
-        company_type = '3'
+        company_type = "3"
         params.update({"companyType": company_type})
         r = requests.get(url, params=params)
         data_json = r.json()
@@ -143,7 +143,7 @@ def stock_profit_sheet_by_report_em(symbol: str = "SH600519") -> pd.DataFrame:
     """
     东方财富-股票-财务分析-利润表-报告期
     https://emweb.securities.eastmoney.com/PC_HSF10/NewFinanceAnalysis/Index?type=web&code=sh600519#lrb-0
-    :param symbol: 股票代码; 带市场标识
+    :param symbol: 股票代码；带市场标识
     :type symbol: str
     :return: 利润表-报告期
     :rtype: pandas.DataFrame
@@ -192,7 +192,7 @@ def stock_profit_sheet_by_yearly_em(symbol: str = "SH600519") -> pd.DataFrame:
     """
     东方财富-股票-财务分析-利润表-按年度
     https://emweb.securities.eastmoney.com/PC_HSF10/NewFinanceAnalysis/Index?type=web&code=sh600519#lrb-0
-    :param symbol: 股票代码; 带市场标识
+    :param symbol: 股票代码；带市场标识
     :type symbol: str
     :return: 利润表-按年度
     :rtype: pandas.DataFrame
@@ -243,7 +243,7 @@ def stock_profit_sheet_by_quarterly_em(
     """
     东方财富-股票-财务分析-利润表-按单季度
     https://emweb.securities.eastmoney.com/PC_HSF10/NewFinanceAnalysis/Index?type=web&code=sh600519#lrb-0
-    :param symbol: 股票代码; 带市场标识
+    :param symbol: 股票代码；带市场标识
     :type symbol: str
     :return: 利润表-按单季度
     :rtype: pandas.DataFrame
@@ -294,7 +294,7 @@ def stock_cash_flow_sheet_by_report_em(
     """
     东方财富-股票-财务分析-现金流量表-按报告期
     https://emweb.securities.eastmoney.com/PC_HSF10/NewFinanceAnalysis/Index?type=web&code=sh600519#lrb-0
-    :param symbol: 股票代码; 带市场标识
+    :param symbol: 股票代码；带市场标识
     :type symbol: str
     :return: 现金流量表-按报告期
     :rtype: pandas.DataFrame
@@ -345,7 +345,7 @@ def stock_cash_flow_sheet_by_yearly_em(
     """
     东方财富-股票-财务分析-现金流量表-按年度
     https://emweb.securities.eastmoney.com/PC_HSF10/NewFinanceAnalysis/Index?type=web&code=sh600519#lrb-0
-    :param symbol: 股票代码; 带市场标识
+    :param symbol: 股票代码；带市场标识
     :type symbol: str
     :return: 现金流量表-按年度
     :rtype: pandas.DataFrame
@@ -396,7 +396,7 @@ def stock_cash_flow_sheet_by_quarterly_em(
     """
     东方财富-股票-财务分析-现金流量表-按单季度
     https://emweb.securities.eastmoney.com/PC_HSF10/NewFinanceAnalysis/Index?type=web&code=sh600519#lrb-0
-    :param symbol: 股票代码; 带市场标识
+    :param symbol: 股票代码；带市场标识
     :type symbol: str
     :return: 现金流量表-按单季度
     :rtype: pandas.DataFrame
@@ -445,7 +445,7 @@ def __get_report_date_list_delisted_em(symbol: str = "SZ000013") -> list:
     """
     东方财富-股票-财务分析-资产负债表-已退市股票-所有报告期
     https://emweb.securities.eastmoney.com/pc_hsf10/pages/index.html?type=web&code=SZ000013
-    :param symbol: 已退市股票代码; 带市场标识
+    :param symbol: 已退市股票代码；带市场标识
     :type symbol: str
     :return: 所有报告期
     :rtype: list
@@ -475,7 +475,7 @@ def stock_balance_sheet_by_report_delisted_em(symbol: str = "SZ000013") -> pd.Da
     """
     东方财富-股票-财务分析-资产负债表-已退市股票-按报告期
     https://emweb.securities.eastmoney.com/pc_hsf10/pages/index.html?type=web&code=SZ000013#/cwfx/zcfzb
-    :param symbol: 已退市股票代码; 带市场标识
+    :param symbol: 已退市股票代码；带市场标识
     :type symbol: str
     :return: 资产负债表-按报告期
     :rtype: pandas.DataFrame
@@ -485,7 +485,7 @@ def stock_balance_sheet_by_report_delisted_em(symbol: str = "SZ000013") -> pd.Da
     params = {
         "type": "RPT_F10_FINANCE_GBALANCE",
         "sty": "F10_FINANCE_GBALANCE",
-        "filter": f"""(SECUCODE="{symbol[2:]}.{symbol[:2]}")(REPORT_DATE in ({','.join(report_date_list)}))""",
+        "filter": f"""(SECUCODE="{symbol[2:]}.{symbol[:2]}")(REPORT_DATE in ({",".join(report_date_list)}))""",
         "p": "1",
         "ps": "200",
         "sr": "-1",
@@ -508,7 +508,7 @@ def stock_profit_sheet_by_report_delisted_em(symbol: str = "SZ000013") -> pd.Dat
     """
     东方财富-股票-财务分析-利润表-已退市股票-按报告期
     https://emweb.securities.eastmoney.com/pc_hsf10/pages/index.html?type=web&code=SZ000013#/cwfx/lrb
-    :param symbol: 已退市股票代码; 带市场标识
+    :param symbol: 已退市股票代码；带市场标识
     :type symbol: str
     :return: 利润表-按报告期
     :rtype: pandas.DataFrame
@@ -518,7 +518,7 @@ def stock_profit_sheet_by_report_delisted_em(symbol: str = "SZ000013") -> pd.Dat
     params = {
         "type": "RPT_F10_FINANCE_GINCOME",
         "sty": "APP_F10_GINCOME",
-        "filter": f"""(SECUCODE="{symbol[2:]}.{symbol[:2]}")(REPORT_DATE in ({','.join(report_date_list)}))""",
+        "filter": f"""(SECUCODE="{symbol[2:]}.{symbol[:2]}")(REPORT_DATE in ({",".join(report_date_list)}))""",
         "p": "1",
         "ps": "200",
         "sr": "-1",
@@ -543,7 +543,7 @@ def stock_cash_flow_sheet_by_report_delisted_em(
     """
     东方财富-股票-财务分析-现金流量表-已退市股票-按报告期
     https://emweb.securities.eastmoney.com/pc_hsf10/pages/index.html?type=web&code=SZ000013#/cwfx/xjllb
-    :param symbol: 已退市股票代码; 带市场标识
+    :param symbol: 已退市股票代码；带市场标识
     :type symbol: str
     :return: 现金流量表-按报告期
     :rtype: pandas.DataFrame
@@ -553,7 +553,7 @@ def stock_cash_flow_sheet_by_report_delisted_em(
     params = {
         "type": "RPT_F10_FINANCE_GCASHFLOW",
         "sty": "APP_F10_GCASHFLOW",
-        "filter": f"""(SECUCODE="{symbol[2:]}.{symbol[:2]}")(REPORT_DATE in ({','.join(report_date_list)}))""",
+        "filter": f"""(SECUCODE="{symbol[2:]}.{symbol[:2]}")(REPORT_DATE in ({",".join(report_date_list)}))""",
         "p": "1",
         "ps": "200",
         "sr": "-1",

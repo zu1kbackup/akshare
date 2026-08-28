@@ -13,7 +13,7 @@ def option_risk_indicator_sse(date: str = "20240626") -> pd.DataFrame:
     """
     上海证券交易所-产品-股票期权-期权风险指标
     http://www.sse.com.cn/assortment/options/risk/
-    :param date: 日期; 20150209 开始
+    :param date: 日期；20150209 开始
     :type date: str
     :return: 期权风险指标
     :rtype: pandas.DataFrame
@@ -35,7 +35,7 @@ def option_risk_indicator_sse(date: str = "20240626") -> pd.DataFrame:
         "Pragma": "no-cache",
         "Referer": "http://www.sse.com.cn/",
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) "
-                      "Chrome/101.0.4951.67 Safari/537.36",
+        "Chrome/101.0.4951.67 Safari/537.36",
     }
     r = requests.get(url, params=params, headers=headers)
     data_json = r.json()

@@ -33,13 +33,12 @@ def stock_hot_rank_em() -> pd.DataFrame:
         "0" + "." + item[2:] if "SZ" in item else "1" + "." + item[2:]
         for item in temp_rank_df["sc"]
     ]
-    ",".join(temp_rank_df["mark"]) + "?v=08926209912590994"
     params = {
         "ut": "f057cbcbce2a86e2866ab8877db1d059",
         "fltt": "2",
         "invt": "2",
         "fields": "f14,f3,f12,f2",
-        "secids": ",".join(temp_rank_df["mark"]) + ",?v=08926209912590994",
+        "secids": ",".join(temp_rank_df["mark"]),
     }
     url = "https://push2.eastmoney.com/api/qt/ulist.np/get"
     r = requests.get(url, params=params)
@@ -98,7 +97,7 @@ def stock_hot_rank_detail_em(symbol: str = "SZ000665") -> pd.DataFrame:
     temp_df["铁杆粉丝"] = (
         pd.DataFrame(data_json["data"])["oldUidRate"].str.strip("%").astype(float) / 100
     )
-    temp_df.sort_values(['时间'], inplace=True)
+    temp_df.sort_values(["时间"], inplace=True)
     return temp_df
 
 

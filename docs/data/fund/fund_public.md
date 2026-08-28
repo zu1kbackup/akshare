@@ -1,14 +1,14 @@
-## [AKShare](https://github.com/akfamily/akshare) 公募基金数据
+# [AKShare](https://github.com/akfamily/akshare) 公募基金数据
 
-### 基金基本信息
+## 基金基本信息
 
-接口: fund_name_em
+接口：fund_name_em
 
-目标地址: http://fund.eastmoney.com/fund.html
+目标地址：http://fund.eastmoney.com/fund.html
 
-描述: 东方财富网-天天基金网-基金数据-所有基金的基本信息数据
+描述：东方财富网-天天基金网-基金数据-所有基金的基本信息数据
 
-限量: 单次返回当前时刻所有历史数据
+限量：单次返回当前时刻所有历史数据
 
 输入参数
 
@@ -52,22 +52,78 @@ print(fund_name_em_df)
 10227  980003   TPYLGYGDCYZ  ...   债券型   TAIPINGYANGLIUGEYUEGUNDONGCHIYOUZHAI
 ```
 
-### 基金基本信息-雪球
+## 基金基本信息-同花顺
 
-接口: fund_individual_basic_info_xq
+接口：fund_info_ths
 
-目标地址: https://danjuanfunds.com/funding/000001
+目标地址：https://fund.10jqka.com.cn/161130/interduce.html
 
-描述: 雪球基金-基金详情
+描述：同花顺-基金数据-基金基本信息
 
-限量: 单次返回单只基金基本信息
+限量：单次返回指定基金的基本信息
+
+输入参数
+
+| 名称     | 类型  | 描述                    |
+|--------|-----|-----------------------|
+| symbol | str | symbol="161130"；基金代码 |
+
+输出参数
+
+| 名称     | 类型     | 描述  |
+|--------|--------|-----|
+| 字段     | object | -   |
+| 值      | object | -   |
+
+接口示例
+
+```python
+import akshare as ak
+
+fund_info_ths_df = ak.fund_info_ths(symbol="161130")
+print(fund_info_ths_df)
+```
+
+数据示例
+
+```
+              字段                                                  值
+0         基金代码                                             161130
+1         基金简称                                 纳斯达克100LOF
+2         基金类型                                               QDII
+3         基金全称  易方达纳斯达克100ETF联接(QDII-LOF)A(人民币份额)
+4         投资类型                                              指数型
+5         基金经理                                              伍臣东
+6         成立日期                                          2017-06-23
+7         成立规模                                          3.28亿份
+8            管理费                                               0.50%
+9         份额规模                             4.13亿份（2026-03-31）
+10  首次最低金额（元）                                                1
+11           托管费                                               0.10%
+12       基金管理人                           易方达基金管理有限公司
+13       基金托管人                        中国建设银行股份有限公司
+14       最高认购费                                               1.00%
+15       最高申购费                                               1.20%
+16       最高赎回费                                               1.50%
+15    业绩比较基准  纳斯达克100指数收益率(使用估值汇率折算)*95%+活期存款利率(税后)*5%
+```
+
+## 基金基本信息-雪球
+
+接口：fund_individual_basic_info_xq
+
+目标地址：https://danjuanfunds.com/funding/000001
+
+描述：雪球基金-基金详情
+
+限量：单次返回单只基金基本信息
 
 输入参数
 
 | 名称      | 类型    | 描述                      |
 |---------|-------|-------------------------|
-| symbol  | str   | symbol="000001"; 基金代码   |
-| timeout | float | timeout=None; 默认不设置超时参数 |
+| symbol  | str   | symbol="000001"；基金代码   |
+| timeout | float | timeout=None；默认不设置超时参数 |
 
 输出参数
 
@@ -105,15 +161,15 @@ print(fund_individual_basic_info_xq_df)
 13  业绩比较基准                                       本基金暂不设业绩比较基准
 ```
 
-### 基金基本信息-指数型
+## 基金基本信息-指数型
 
-接口: fund_info_index_em
+接口：fund_info_index_em
 
-目标地址: http://fund.eastmoney.com/trade/zs.html
+目标地址：http://fund.eastmoney.com/trade/zs.html
 
-描述: 东方财富网-天天基金网-基金数据-基金基本信息-指数型
+描述：东方财富网-天天基金网-基金数据-基金基本信息-指数型
 
-限量: 单次返回当前时刻所有历史数据
+限量：单次返回当前时刻所有历史数据
 
 输入参数
 
@@ -130,17 +186,17 @@ print(fund_individual_basic_info_xq_df)
 | 基金名称 | object  | -       |
 | 单位净值 | float64 | -       |
 | 日期   | object  | -       |
-| 日增长率 | float64 | 注意单位: % |
-| 近1周  | float64 | 注意单位: % |
-| 近1月  | float64 | 注意单位: % |
-| 近3月  | float64 | 注意单位: % |
-| 近6月  | float64 | 注意单位: % |
-| 近1年  | float64 | 注意单位: % |
-| 近2年  | float64 | 注意单位: % |
-| 近3年  | float64 | 注意单位: % |
-| 今年来  | float64 | 注意单位: % |
-| 成立来  | float64 | 注意单位: % |
-| 手续费  | float64 | 注意单位: % |
+| 日增长率 | float64 | 注意单位：% |
+| 近1周  | float64 | 注意单位：% |
+| 近1月  | float64 | 注意单位：% |
+| 近3月  | float64 | 注意单位：% |
+| 近6月  | float64 | 注意单位：% |
+| 近1年  | float64 | 注意单位：% |
+| 近2年  | float64 | 注意单位：% |
+| 近3年  | float64 | 注意单位：% |
+| 今年来  | float64 | 注意单位：% |
+| 成立来  | float64 | 注意单位：% |
+| 手续费  | float64 | 注意单位：% |
 | 起购金额 | object  | -       |
 | 跟踪标的 | object  | -       |
 | 跟踪方式 | object  | -       |
@@ -171,15 +227,15 @@ print(fund_info_index_em_df)
 279  016134       嘉实沪深300指数研究增强C  0.9614  2022-07-26  ...  0.00   10元  沪深指数  增强指数型
 ```
 
-### 基金申购状态
+## 基金申购状态
 
-接口: fund_purchase_em
+接口：fund_purchase_em
 
-目标地址: http://fund.eastmoney.com/Fund_sgzt_bzdm.html#fcode,asc_1
+目标地址：http://fund.eastmoney.com/Fund_sgzt_bzdm.html#fcode,asc_1
 
-描述: 东方财富网站-天天基金网-基金数据-基金申购状态
+描述：东方财富网站-天天基金网-基金数据-基金申购状态
 
-限量: 单次返回当前时刻所有历史数据
+限量：单次返回当前时刻所有历史数据
 
 输入参数
 
@@ -202,7 +258,7 @@ print(fund_info_index_em_df)
 | 下一开放日          | object  | -       |
 | 购买起点           | float64 | -       |
 | 日累计限定金额        | float64 | -       |
-| 手续费            | float64 | 注意单位: % |
+| 手续费            | float64 | 注意单位：% |
 
 接口示例
 
@@ -230,17 +286,17 @@ print(fund_purchase_em_df)
 14959  14960  980003         太平洋六个月滚动持有债  ...  100  1.000000e+11  0.05
 ```
 
-### 基金行情
+## 基金行情
 
-#### ETF基金实时行情-东财
+### ETF基金实时行情-东财
 
-接口: fund_etf_spot_em
+接口：fund_etf_spot_em
 
-目标地址: https://quote.eastmoney.com/center/gridlist.html#fund_etf
+目标地址：https://quote.eastmoney.com/center/gridlist.html#fund_etf
 
-描述: 东方财富-ETF 实时行情
+描述：东方财富-ETF 实时行情
 
-限量: 单次返回所有数据
+限量：单次返回所有数据
 
 输入参数
 
@@ -256,9 +312,9 @@ print(fund_purchase_em_df)
 | 名称         | object  | -       |
 | 最新价        | float64 | -       |
 | IOPV实时估值   | float64 | -       |
-| 基金折价率      | float64 | 注意单位: % |
+| 基金折价率      | float64 | 注意单位：% |
 | 涨跌额        | float64 | -       |
-| 涨跌幅        | float64 | 注意单位: % |
+| 涨跌幅        | float64 | 注意单位：% |
 | 成交量        | float64 | -       |
 | 成交额        | float64 | -       |
 | 开盘价        | float64 | -       |
@@ -316,21 +372,22 @@ print(fund_etf_spot_em_df)
 [1010 rows x 37 columns]
 ```
 
-#### ETF基金实时行情-同花顺
+### 基金实时行情-同花顺
 
-接口: fund_etf_spot_ths
+接口：fund_etf_category_ths
 
-目标地址: https://fund.10jqka.com.cn/datacenter/jz/kfs/etf/
+目标地址：https://fund.10jqka.com.cn/datacenter/jz/kfs/etf/
 
-描述: 同花顺理财-基金数据-每日净值-ETF-实时行情
+描述：同花顺理财-基金数据-每日净值-实时行情
 
-限量: 单次返回指定 date 的所有数据
+限量：单次返回指定 date 和 symbol 的所有数据
 
 输入参数
 
-| 名称   | 类型  | 描述                   |
-|------|-----|----------------------|
-| date | str | date=""; 默认返回当前最新的数据 |
+| 名称     | 类型  | 描述                                                                                             |
+|--------|-----|------------------------------------------------------------------------------------------------|
+| symbol | str | symbol="ETF"; choice of {"股票型", "债券型", "混合型", "ETF", "LOF", "QDII", "保本型", "指数型", ""}; "" 表示全部 |
+| date   | str | date=""；默认返回当前最新的数据                                                                           |
 
 输出参数
 
@@ -344,7 +401,71 @@ print(fund_etf_spot_em_df)
 | 前一日-单位净值 | float64 | -       |
 | 前一日-累计净值 | float64 |         |
 | 增长值      | float64 | -       |
-| 增长率      | float64 | 注意单位: % |
+| 增长率      | float64 | 注意单位：% |
+| 赎回状态     | object  | -       |
+| 申购状态     | object  | -       |
+| 最新-交易日   | object  | -       |
+| 最新-单位净值  | float64 | -       |
+| 最新-累计净值  | float64 | -       |
+| 基金类型     | object  | -       |
+| 查询日期     | object  | -       |
+
+接口示例
+
+```python
+import akshare as ak
+
+fund_etf_category_ths_df = ak.fund_etf_category_ths(symbol="ETF", date="20240620")
+print(fund_etf_category_ths_df)
+```
+
+数据示例
+
+```
+      序号    基金代码         基金名称  ...  最新-累计净值  基金类型    查询日期
+0      1  159691            高股息ETF港股  ...   1.2039   股票型  2024-06-20
+1      2  588200        嘉实上证科创板芯片ETF  ...   1.0000   股票型  2024-06-20
+2      3  588290        华安上证科创板芯片ETF  ...   0.9775   股票型  2024-06-20
+3      4  588890        南方上证科创板芯片ETF  ...   1.1194   股票型  2024-06-20
+4      5  513530                港股红利  ...   1.3692   股票型  2024-06-20
+..   ...     ...                 ...  ...      ...   ...         ...
+979  980  560360         万家中证软件服务ETF  ...   1.0000   股票型  2024-06-20
+980  981  588500  易方达上证科创板100增强策略ETF  ...      NaN   股票型  2024-06-20
+981  982  588680   广发上证科创板100增强策略ETF  ...      NaN   股票型  2024-06-20
+982  983  588860             科创医药ETF  ...      NaN   股票型  2024-06-20
+983  984  588990        博时上证科创板芯片ETF  ...      NaN   股票型  2024-06-20
+[984 rows x 16 columns]
+```
+
+### ETF基金实时行情-同花顺
+
+接口：fund_etf_spot_ths
+
+目标地址：https://fund.10jqka.com.cn/datacenter/jz/kfs/etf/
+
+描述：同花顺理财-基金数据-每日净值-ETF-实时行情
+
+限量：单次返回指定 date 的所有数据
+
+输入参数
+
+| 名称   | 类型  | 描述                   |
+|------|-----|----------------------|
+| date | str | date=""；默认返回当前最新的数据 |
+
+输出参数
+
+| 名称       | 类型      | 描述      |
+|----------|---------|---------|
+| 序号       | int64   | -       |
+| 基金代码     | object  | -       |
+| 基金名称     | object  | -       |
+| 当前-单位净值  | float64 | -       |
+| 当前-累计净值  | float64 | -       |
+| 前一日-单位净值 | float64 | -       |
+| 前一日-累计净值 | float64 |         |
+| 增长值      | float64 | -       |
+| 增长率      | float64 | 注意单位：% |
 | 赎回状态     | object  | -       |
 | 申购状态     | object  | -       |
 | 最新-交易日   | object  | -       |
@@ -380,15 +501,15 @@ print(fund_etf_spot_ths_df)
 [984 rows x 16 columns]
 ```
 
-#### LOF基金实时行情-东财
+### LOF基金实时行情-东财
 
-接口: fund_lof_spot_em
+接口：fund_lof_spot_em
 
-目标地址: https://quote.eastmoney.com/center/gridlist.html#fund_lof
+目标地址：https://quote.eastmoney.com/center/gridlist.html#fund_lof
 
-描述: 东方财富-LOF 实时行情
+描述：东方财富-LOF 实时行情
 
-限量: 单次返回所有数据
+限量：单次返回所有数据
 
 输入参数
 
@@ -404,7 +525,7 @@ print(fund_etf_spot_ths_df)
 | 名称   | object  | -       |
 | 最新价  | float64 | -       |
 | 涨跌额  | float64 | -       |
-| 涨跌幅  | float64 | 注意单位: % |
+| 涨跌幅  | float64 | 注意单位：% |
 | 成交量  | float64 | -       |
 | 成交额  | float64 | -       |
 | 开盘价  | float64 | -       |
@@ -442,15 +563,15 @@ print(fund_lof_spot_em_df)
 [151 rows x 14 columns]
 ```
 
-#### 基金实时行情-新浪
+### 基金实时行情-新浪
 
-接口: fund_etf_category_sina
+接口：fund_etf_category_sina
 
-目标地址: http://vip.stock.finance.sina.com.cn/fund_center/index.html#jjhqetf
+目标地址：http://vip.stock.finance.sina.com.cn/fund_center/index.html#jjhqetf
 
-描述: 新浪财经-基金列表及行情数据
+描述：新浪财经-基金列表及行情数据
 
-限量: 单次返回指定 symbol 基金的所有数据
+限量：单次返回指定 symbol 基金的所有数据
 
 输入参数
 
@@ -466,15 +587,15 @@ print(fund_lof_spot_em_df)
 | 名称  | object  | -       |
 | 最新价 | float64 | -       |
 | 涨跌额 | float64 | -       |
-| 涨跌幅 | float64 | 注意单位: % |
+| 涨跌幅 | float64 | 注意单位：% |
 | 买入  | float64 | -       |
 | 卖出  | float64 | -       |
 | 昨收  | float64 | -       |
 | 今开  | float64 | -       |
 | 最高  | float64 | -       |
 | 最低  | float64 | -       |
-| 成交量 | int64   | 注意单位: 股 |
-| 成交额 | int64   | 注意单位: 元 |
+| 成交量 | int64   | 注意单位：股 |
+| 成交额 | int64   | 注意单位：元 |
 
 接口示例
 
@@ -543,25 +664,25 @@ print(fund_etf_category_sina_df)
 [51 rows x 13 columns]
 ```
 
-#### ETF基金分时行情-东财
+### ETF基金分时行情-东财
 
-接口: fund_etf_hist_min_em
+接口：fund_etf_hist_min_em
 
-目标地址: https://quote.eastmoney.com/sz159707.html
+目标地址：https://quote.eastmoney.com/sz159707.html
 
-描述: 东方财富-ETF 分时行情; 该接口只能获取近期的分时数据，注意时间周期的设置
+描述：东方财富-ETF 分时行情；该接口只能获取近期的分时数据，注意时间周期的设置
 
-限量: 单次返回指定 ETF、频率、复权调整和时间区间的分时数据, 其中 1 分钟数据只返回近 5 个交易日数据且不复权
+限量：单次返回指定 ETF、频率、复权调整和时间区间的分时数据，其中 1 分钟数据只返回近 5 个交易日数据且不复权
 
 输入参数
 
 | 名称         | 类型  | 描述                                                                                                  |
 |------------|-----|-----------------------------------------------------------------------------------------------------|
 | symbol     | str | symbol='513500'; ETF 代码可以在 **ak.fund_etf_spot_em()** 中获取                                            |
-| start_date | str | start_date="1979-09-01 09:32:00"; 日期时间; 默认返回所有数据                                                    |
-| end_date   | str | end_date="2222-01-01 09:32:00"; 日期时间; 默认返回所有数据                                                      |
-| period     | str | period='5'; choice of {'1', '5', '15', '30', '60'}; 其中 1 分钟数据返回近 5 个交易日数据且不复权                       |
-| adjust     | str | adjust=''; choice of {'', 'qfq', 'hfq'}; '': 不复权, 'qfq': 前复权, 'hfq': 后复权, 其中 1 分钟数据返回近 5 个交易日数据且不复权 |
+| start_date | str | start_date="1979-09-01 09:32:00"；日期时间；默认返回所有数据                                                    |
+| end_date   | str | end_date="2222-01-01 09:32:00"；日期时间；默认返回所有数据                                                      |
+| period     | str | period='5'; choice of {'1', '5', '15', '30', '60'}；其中 1 分钟数据返回近 5 个交易日数据且不复权                       |
+| adjust     | str | adjust=''; choice of {'', 'qfq', 'hfq'}; '': 不复权，'qfq': 前复权，'hfq': 后复权，其中 1 分钟数据返回近 5 个交易日数据且不复权 |
 
 输出参数-1分钟数据
 
@@ -612,12 +733,12 @@ print(fund_etf_hist_min_em_df)
 | 收盘  | float64 | -       |
 | 最高  | float64 | -       |
 | 最低  | float64 | -       |
-| 涨跌幅 | float64 | 注意单位: % |
+| 涨跌幅 | float64 | 注意单位：% |
 | 涨跌额 | float64 | -       |
 | 成交量 | float64 | -       |
 | 成交额 | float64 | -       |
-| 振幅  | float64 | 注意单位: % |
-| 换手率 | float64 | 注意单位: % |
+| 振幅  | float64 | 注意单位：% |
+| 换手率 | float64 | 注意单位：% |
 
 接口示例-其他
 
@@ -683,25 +804,25 @@ print(fund_etf_hist_min_em_df)
 [48 rows x 11 columns]
 ```
 
-#### LOF基金分时行情-东财
+### LOF基金分时行情-东财
 
-接口: fund_lof_hist_min_em
+接口：fund_lof_hist_min_em
 
-目标地址: https://quote.eastmoney.com/sz166009.html
+目标地址：https://quote.eastmoney.com/sz166009.html
 
-描述: 东方财富-LOF 分时行情; 该接口只能获取近期的分时数据，注意时间周期的设置
+描述：东方财富-LOF 分时行情；该接口只能获取近期的分时数据，注意时间周期的设置
 
-限量: 单次返回指定 LOF、频率、复权调整和时间区间的分时数据, 其中 1 分钟数据只返回近 5 个交易日数据且不复权
+限量：单次返回指定 LOF、频率、复权调整和时间区间的分时数据，其中 1 分钟数据只返回近 5 个交易日数据且不复权
 
 输入参数
 
 | 名称         | 类型  | 描述                                                                                                  |
 |------------|-----|-----------------------------------------------------------------------------------------------------|
 | symbol     | str | symbol='166009'; LOF 代码可以在 **ak.fund_lof_spot_em()** 中获取                                            |
-| start_date | str | start_date="1979-09-01 09:32:00"; 日期时间; 默认返回所有数据                                                    |
-| end_date   | str | end_date="2222-01-01 09:32:00"; 日期时间; 默认返回所有数据                                                      |
-| period     | str | period='5'; choice of {'1', '5', '15', '30', '60'}; 其中 1 分钟数据返回近 5 个交易日数据且不复权                       |
-| adjust     | str | adjust=''; choice of {'', 'qfq', 'hfq'}; '': 不复权, 'qfq': 前复权, 'hfq': 后复权, 其中 1 分钟数据返回近 5 个交易日数据且不复权 |
+| start_date | str | start_date="1979-09-01 09:32:00"；日期时间；默认返回所有数据                                                    |
+| end_date   | str | end_date="2222-01-01 09:32:00"；日期时间；默认返回所有数据                                                      |
+| period     | str | period='5'; choice of {'1', '5', '15', '30', '60'}；其中 1 分钟数据返回近 5 个交易日数据且不复权                       |
+| adjust     | str | adjust=''; choice of {'', 'qfq', 'hfq'}; '': 不复权，'qfq': 前复权，'hfq': 后复权，其中 1 分钟数据返回近 5 个交易日数据且不复权 |
 
 输出参数-1分钟数据
 
@@ -752,12 +873,12 @@ print(fund_lof_hist_min_em_df)
 | 收盘  | float64 | -       |
 | 最高  | float64 | -       |
 | 最低  | float64 | -       |
-| 涨跌幅 | float64 | 注意单位: % |
+| 涨跌幅 | float64 | 注意单位：% |
 | 涨跌额 | float64 | -       |
 | 成交量 | float64 | -       |
 | 成交额 | float64 | -       |
-| 振幅  | float64 | 注意单位: % |
-| 换手率 | float64 | 注意单位: % |
+| 振幅  | float64 | 注意单位：% |
+| 换手率 | float64 | 注意单位：% |
 
 接口示例-其他
 
@@ -823,15 +944,15 @@ print(fund_lof_hist_min_em_df)
 [48 rows x 11 columns]
 ```
 
-#### ETF基金历史行情-东财
+### ETF基金历史行情-东财
 
-接口: fund_etf_hist_em
+接口：fund_etf_hist_em
 
-目标地址: http://quote.eastmoney.com/sz159707.html
+目标地址：http://quote.eastmoney.com/sz159707.html
 
-描述: 东方财富-ETF 行情; 历史数据按日频率更新, 当日收盘价请在收盘后获取
+描述：东方财富-ETF 行情；历史数据按日频率更新，当日收盘价请在收盘后获取
 
-限量: 单次返回指定 ETF、指定周期和指定日期间的历史行情日频率数据
+限量：单次返回指定 ETF、指定周期和指定日期间的历史行情日频率数据
 
 输入参数
 
@@ -839,9 +960,9 @@ print(fund_lof_hist_min_em_df)
 |------------|-----|-----------------------------------------------------------------|
 | symbol     | str | symbol='159707'; ETF 代码可以在 **ak.fund_etf_spot_em()** 中获取或查看东财主页 |
 | period     | str | period='daily'; choice of {'daily', 'weekly', 'monthly'}        |
-| start_date | str | start_date='20000101'; 开始查询的日期                                  |
-| end_date   | str | end_date='20230104'; 结束查询的日期                                    |
-| adjust     | str | 默认返回不复权的数据; qfq: 返回前复权后的数据; hfq: 返回后复权后的数据                      |
+| start_date | str | start_date='20000101'；开始查询的日期                                  |
+| end_date   | str | end_date='20230104'；结束查询的日期                                    |
+| adjust     | str | 默认返回不复权的数据；qfq: 返回前复权后的数据；hfq: 返回后复权后的数据                      |
 
 **数据复权**
 
@@ -958,15 +1079,15 @@ print(fund_etf_hist_em_df)
 2183  2023-01-04  2.494  2.490  2.498  ...  0.40 -0.40 -0.010  1.86
 ```
 
-#### LOF基金历史行情-东财
+### LOF基金历史行情-东财
 
-接口: fund_lof_hist_em
+接口：fund_lof_hist_em
 
-目标地址: https://quote.eastmoney.com/sz166009.html
+目标地址：https://quote.eastmoney.com/sz166009.html
 
-描述: 东方财富-LOF 行情; 历史数据按日频率更新, 当日收盘价请在收盘后获取
+描述：东方财富-LOF 行情；历史数据按日频率更新，当日收盘价请在收盘后获取
 
-限量: 单次返回指定 LOF、指定周期和指定日期间的历史行情日频率数据
+限量：单次返回指定 LOF、指定周期和指定日期间的历史行情日频率数据
 
 输入参数
 
@@ -974,9 +1095,9 @@ print(fund_etf_hist_em_df)
 |------------|-----|----------------------------------------------------------|
 | symbol     | str | symbol='166009'; LOF 代码可以在 **ak.fund_lof_spot_em()** 中获取 |
 | period     | str | period='daily'; choice of {'daily', 'weekly', 'monthly'} |
-| start_date | str | start_date='20000101'; 开始查询的日期                           |
-| end_date   | str | end_date='20230104'; 结束查询的日期                             |
-| adjust     | str | 默认返回不复权的数据; qfq: 返回前复权后的数据; hfq: 返回后复权后的数据               |
+| start_date | str | start_date='20000101'；开始查询的日期                           |
+| end_date   | str | end_date='20230104'；结束查询的日期                             |
+| adjust     | str | 默认返回不复权的数据；qfq: 返回前复权后的数据；hfq: 返回后复权后的数据               |
 
 **数据复权**
 
@@ -1096,21 +1217,21 @@ print(fund_lof_hist_em_df)
 [2520 rows x 11 columns]
 ```
 
-#### 基金历史行情-新浪
+### 基金历史行情-新浪
 
-接口: fund_etf_hist_sina
+接口：fund_etf_hist_sina
 
-目标地址: http://vip.stock.finance.sina.com.cn/fund_center/index.html#jjhqetf
+目标地址：http://vip.stock.finance.sina.com.cn/fund_center/index.html#jjhqetf
 
-描述: 新浪财经-基金行情的日频率行情数据
+描述：新浪财经-基金行情的日频率行情数据
 
-限量: 单次返回指定基金的所有数据
+限量：单次返回指定基金的所有数据
 
 输入参数
 
 | 名称     | 类型  | 描述                                                                                                      |
 |--------|-----|---------------------------------------------------------------------------------------------------------|
-| symbol | str | symbol="sh510050"; 基金列表可以通过 **ak.fund_etf_category_sina(symbol="LOF基金")** 可选参数为: 封闭式基金, ETF基金, LOF基金 查询 |
+| symbol | str | symbol="sh510050"；基金列表可以通过 **ak.fund_etf_category_sina(symbol="LOF基金")** 可选参数为：封闭式基金，ETF基金，LOF基金 查询 |
 
 输出参数
 
@@ -1121,7 +1242,7 @@ print(fund_lof_hist_em_df)
 | high   | float64 | -       |
 | low    | float64 | -       |
 | close  | float64 | -       |
-| volume | int64   | 注意单位: 手 |
+| volume | int64   | 注意单位：手 |
 
 接口示例
 
@@ -1150,17 +1271,17 @@ print(fund_etf_hist_sina_df)
 [4801 rows x 6 columns]
 ```
 
-### 基金净值
+## 基金净值
 
-#### 开放式基金-实时数据
+### 开放式基金-实时数据
 
-接口: fund_open_fund_daily_em
+接口：fund_open_fund_daily_em
 
-目标地址: http://fund.eastmoney.com/fund.html#os_0;isall_0;ft_;pt_1
+目标地址：http://fund.eastmoney.com/fund.html#os_0;isall_0;ft_;pt_1
 
-描述: 东方财富网-天天基金网-基金数据, 此接口在每个交易日 **16:00-23:00** 更新当日的最新开放式基金净值数据
+描述：东方财富网-天天基金网-基金数据，此接口在每个交易日 **16:00-23:00** 更新当日的最新开放式基金净值数据
 
-限量: 单次返回当前时刻所有历史数据
+限量：单次返回当前时刻所有历史数据
 
 输入参数
 
@@ -1182,7 +1303,7 @@ print(fund_etf_hist_sina_df)
 | 日增长率      | float | -       |
 | 申购状态      | str   | -       |
 | 赎回状态      | str   | -       |
-| 手续费       | str   | 注意单位: % |
+| 手续费       | str   | 注意单位：% |
 
 接口示例
 
@@ -1210,23 +1331,23 @@ print(fund_open_fund_daily_em_df)
 10009  010650       易方达创新未来18个月封闭混合B                  ...   封闭期  开放赎回
 ```
 
-#### 开放式基金-历史数据
+### 开放式基金-历史数据
 
-接口: fund_open_fund_info_em
+接口：fund_open_fund_info_em
 
-目标地址: http://fund.eastmoney.com/pingzhongdata/710001.js
+目标地址：http://fund.eastmoney.com/pingzhongdata/710001.js
 
-描述: 东方财富网-天天基金网-基金数据-具体基金信息
+描述：东方财富网-天天基金网-基金数据-具体基金信息
 
-限量: 单次返回当前时刻所有历史数据, 在查询基金数据的时候注意基金前后端问题
+限量：单次返回当前时刻所有历史数据，在查询基金数据的时候注意基金前后端问题
 
 输入参数
 
 | 名称        | 类型  | 描述                                                                                             |
 |-----------|-----|------------------------------------------------------------------------------------------------|
-| symbol    | str | symbol="710001"; 需要基金代码, 可以通过调用 **ak.fund_open_fund_daily_em()** 获取                            |
-| indicator | str | indicator="单位净值走势";  参见 **fund_open_fund_info_em** 参数一览表                                       |
-| period    | str | period="成立来"; 该参数只对 `累计收益率走势` 有效, choice of {"1月", "3月", "6月", "1年", "3年", "5年", "今年来", "成立来"} |
+| symbol    | str | symbol="710001"；需要基金代码，可以通过调用 **ak.fund_open_fund_daily_em()** 获取                            |
+| indicator | str | indicator="单位净值走势"；参见 **fund_open_fund_info_em** 参数一览表                                       |
+| period    | str | period="成立来"；该参数只对 `累计收益率走势` 有效，choice of {"1月", "3月", "6月", "1年", "3年", "5年", "今年来", "成立来"} |
 
 fund_open_fund_info_em 参数一览表
 
@@ -1246,7 +1367,7 @@ fund_open_fund_info_em 参数一览表
 |------|---------|---------|
 | 净值日期 | object  | -       |
 | 单位净值 | float64 | -       |
-| 日增长率 | float64 | 注意单位: % |
+| 日增长率 | float64 | 注意单位：% |
 
 接口示例-单位净值走势
 
@@ -1314,7 +1435,7 @@ print(fund_open_fund_info_em_df)
 | 名称    | 类型      | 描述      |
 |-------|---------|---------|
 | 日期    | object  | -       |
-| 累计收益率 | float64 | 注意单位: % |
+| 累计收益率 | float64 | 注意单位：% |
 
 接口示例-累计收益率走势
 
@@ -1476,15 +1597,15 @@ print(fund_open_fund_info_em_df)
 8  2015年  2015-12-15  份额折算  1:1.0180
 ```
 
-#### 货币型基金-实时数据
+### 货币型基金-实时数据
 
-接口: fund_money_fund_daily_em
+接口：fund_money_fund_daily_em
 
-目标地址: http://fund.eastmoney.com/HBJJ_pjsyl.html
+目标地址：http://fund.eastmoney.com/HBJJ_pjsyl.html
 
-描述: 东方财富网-天天基金网-基金数据-货币型基金收益, 此接口数据每个交易日 **16:00～23:00**
+描述：东方财富网-天天基金网-基金数据-货币型基金收益，此接口数据每个交易日 **16:00～23:00**
 
-限量: 单次返回当前时刻所有历史数据
+限量：单次返回当前时刻所有历史数据
 
 输入参数
 
@@ -1536,21 +1657,23 @@ print(fund_money_fund_daily_em_df)
 452  519507       万家货币B        ---         ---  ...  2013-08-15    郅元  0费率   购买
 ```
 
-#### 货币型基金-历史数据
+### 货币型基金-历史数据
 
-接口: fund_money_fund_info_em
+接口：fund_money_fund_info_em
 
-目标地址: https://fundf10.eastmoney.com/jjjz_000009.html
+目标地址：https://fundf10.eastmoney.com/jjjz_000009.html
 
-描述: 东方财富网-天天基金网-基金数据-货币型基金-历史净值
+描述：东方财富网-天天基金网-基金数据-货币型基金-历史净值
 
-限量: 单次返回当前时刻所有历史数据
+说明：东方财富 `LSJZList` 返回体当前包含额外元数据字段，接口已按字段名解析所需列以保持兼容
+
+限量：单次返回当前时刻所有历史数据
 
 输入参数
 
 | 名称     | 类型  | 描述                                                                   |
 |--------|-----|----------------------------------------------------------------------|
-| symbol | str | symbol="000009"; 需要基金代码, 可以通过调用 **ak.fund_money_fund_daily_em()** 获取 |
+| symbol | str | symbol="000009"；需要基金代码，可以通过调用 **ak.fund_money_fund_daily_em()** 获取 |
 
 输出参数
 
@@ -1589,15 +1712,15 @@ print(fund_money_fund_info_em_df)
 [4192 rows x 5 columns]
 ```
 
-#### 理财型基金-实时数据
+### 理财型基金-实时数据
 
-接口: fund_financial_fund_daily_em
+接口：fund_financial_fund_daily_em
 
-目标地址: http://fund.eastmoney.com/lcjj.html#1_1__0__ljjz,desc_1_os1
+目标地址：http://fund.eastmoney.com/lcjj.html#1_1__0__ljjz,desc_1_os1
 
-描述: 东方财富网-天天基金网-基金数据-理财型基金-实时数据, 此接口数据每个交易日 **16:00～23:00** 更新
+描述：东方财富网-天天基金网-基金数据-理财型基金-实时数据，此接口数据每个交易日 **16:00～23:00** 更新
 
-限量: 该接口由于目标网站未更新数据，暂时不能返回数据
+限量：该接口由于目标网站未更新数据，暂时不能返回数据
 
 输入参数
 
@@ -1645,21 +1768,21 @@ print(fund_financial_fund_daily_em_df)
 9  10  000322    农银14天理财债券A           ...      0.4592      1.6080  14天  限大额
 ```
 
-#### 理财型基金-历史数据
+### 理财型基金-历史数据
 
-接口: fund_financial_fund_info_em
+接口：fund_financial_fund_info_em
 
-目标地址: http://fundf10.eastmoney.com/jjjz_000791.html
+目标地址：http://fundf10.eastmoney.com/jjjz_000791.html
 
-描述: 东方财富网站-天天基金网-基金数据-理财型基金收益-历史净值明细
+描述：东方财富网站-天天基金网-基金数据-理财型基金收益-历史净值明细
 
-限量: 单次返回当前时刻所有历史数据
+限量：单次返回当前时刻所有历史数据
 
 输入参数
 
 | 名称     | 类型  | 描述                                                                     |
 |--------|-----|------------------------------------------------------------------------|
-| symbol | str | symbol="000134"; 基金代码, 可以通过调用 **ak.fund_financial_fund_daily_em()** 获取 |
+| symbol | str | symbol="000134"；基金代码，可以通过调用 **ak.fund_financial_fund_daily_em()** 获取 |
 
 输出参数
 
@@ -1671,7 +1794,7 @@ print(fund_financial_fund_daily_em_df)
 | 日增长率 | float64 | -       |
 | 申购状态 | object  | -       |
 | 赎回状态 | object  | -       |
-| 分红送配 | object  | 注意单位: % |
+| 分红送配 | object  | 注意单位：% |
 
 接口示例
 
@@ -1699,15 +1822,15 @@ print(fund_financial_fund_info_em_df)
 667  2023-03-22  1.0303  1.0963  0.00  限制大额申购  开放赎回
 ```
 
-#### 分级基金-实时数据
+### 分级基金-实时数据
 
-接口: fund_graded_fund_daily_em
+接口：fund_graded_fund_daily_em
 
-目标地址: http://fund.eastmoney.com/fjjj.html#1_1__0__zdf,desc_1
+目标地址：http://fund.eastmoney.com/fjjj.html#1_1__0__zdf,desc_1
 
-描述: 东方财富网-天天基金网-基金数据-分级基金-实时数据, 此接口数据每个交易日 **16:00～23:00**
+描述：东方财富网-天天基金网-基金数据-分级基金-实时数据，此接口数据每个交易日 **16:00～23:00**
 
-限量: 单次返回当前时刻所有历史数据
+限量：单次返回当前时刻所有历史数据
 
 输入参数
 
@@ -1726,7 +1849,7 @@ print(fund_financial_fund_info_em_df)
 | 前交易日-单位净值 | float | -       |
 | 前交易日-累计净值 | float | -       |
 | 日增长值      | float | -       |
-| 日增长率      | float | 注意单位: % |
+| 日增长率      | float | 注意单位：% |
 | 市价        | str   | -       |
 | 折价率       | str   | -       |
 | 手续费       | str   | -       |
@@ -1757,21 +1880,21 @@ print(fund_graded_fund_daily_em_df)
 345  161825       银华中证800分级                  ...                         1.20%
 ```
 
-#### 分级基金-历史数据
+### 分级基金-历史数据
 
-接口: fund_graded_fund_info_em
+接口：fund_graded_fund_info_em
 
-目标地址: http://fundf10.eastmoney.com/jjjz_004186.html
+目标地址：http://fundf10.eastmoney.com/jjjz_004186.html
 
-描述: 东方财富网站-天天基金网-基金数据-分级基金-历史数据
+描述：东方财富网站-天天基金网-基金数据-分级基金-历史数据
 
-限量: 单次返回当前时刻所有历史数据
+限量：单次返回当前时刻所有历史数据
 
 输入参数
 
 | 名称     | 类型  | 描述                                                                    |
 |--------|-----|-----------------------------------------------------------------------|
-| symbol | str | symbol="150232"; 需要基金代码, 可以通过调用 **ak.fund_graded_fund_daily_em()** 获取 |
+| symbol | str | symbol="150232"；需要基金代码，可以通过调用 **ak.fund_graded_fund_daily_em()** 获取 |
 
 输出参数
 
@@ -1780,7 +1903,7 @@ print(fund_graded_fund_daily_em_df)
 | 净值日期 | str   | -                                                                        |
 | 单位净值 | float | -                                                                        |
 | 累计净值 | float | -                                                                        |
-| 日增长率 | float | 注意单位: %; 日增长率为空原因如下: 1. 非交易日净值不参与日增长率计算(灰色数据行). 2. 上一交易日净值未披露, 日增长率无法计算. |
+| 日增长率 | float | 注意单位：%；日增长率为空原因如下：1. 非交易日净值不参与日增长率计算（灰色数据行）. 2. 上一交易日净值未披露，日增长率无法计算。 |
 | 申购状态 | str   | -                                                                        |
 | 赎回状态 | str   | -                                                                        |
 
@@ -1811,15 +1934,15 @@ print(fund_graded_fund_info_em_df)
 [1343 rows x 6 columns]
 ```
 
-#### 场内交易基金-实时数据
+### 场内交易基金-实时数据
 
-接口: fund_etf_fund_daily_em
+接口：fund_etf_fund_daily_em
 
-目标地址: http://fund.eastmoney.com/cnjy_dwjz.html
+目标地址：http://fund.eastmoney.com/cnjy_dwjz.html
 
-描述: 东方财富网站-天天基金网-基金数据-场内交易基金-实时数据, 此接口数据每个交易日 **16:00～23:00**
+描述：东方财富网站-天天基金网-基金数据-场内交易基金-实时数据，此接口数据每个交易日 **16:00～23:00**
 
-限量: 单次返回当前时刻所有数据
+限量：单次返回当前时刻所有数据
 
 输入参数
 
@@ -1869,23 +1992,23 @@ print(fund_etf_fund_daily_em_df)
 478  515790  华泰柏瑞中证光伏产业ETF行情  ETF-场内  ...     ---     ---     ---
 ```
 
-#### 场内交易基金-历史数据
+### 场内交易基金-历史数据
 
-接口: fund_etf_fund_info_em
+接口：fund_etf_fund_info_em
 
-目标地址: http://fundf10.eastmoney.com/jjjz_004186.html
+目标地址：http://fundf10.eastmoney.com/jjjz_004186.html
 
-描述: 东方财富网站-天天基金网-基金数据-场内交易基金-历史净值数据
+描述：东方财富网站-天天基金网-基金数据-场内交易基金-历史净值数据
 
-限量: 单次返回当前时刻所有历史数据
+限量：单次返回当前时刻所有历史数据
 
 输入参数
 
 | 名称         | 类型  | 描述                                                             |
 |------------|-----|----------------------------------------------------------------|
-| fund       | str | fund="511280"; 基金代码, 可以通过调用 **ak.fund_etf_fund_daily_em()** 获取 |
-| start_date | str | start_date="20000101"; 开始时间                                    |
-| end_date   | str | end_date="20500101"; 结束时间                                      |
+| fund       | str | fund="511280"；基金代码，可以通过调用 **ak.fund_etf_fund_daily_em()** 获取 |
+| start_date | str | start_date="20000101"；开始时间                                    |
+| end_date   | str | end_date="20500101"；结束时间                                      |
 
 输出参数
 
@@ -1894,7 +2017,7 @@ print(fund_etf_fund_daily_em_df)
 | 净值日期 | object  | -       |
 | 单位净值 | float64 | -       |
 | 累计净值 | float64 | -       |
-| 日增长率 | float64 | 注意单位: % |
+| 日增长率 | float64 | 注意单位：% |
 | 申购状态 | object  | -       |
 | 赎回状态 | object  | -       |
 
@@ -1925,21 +2048,21 @@ print(fund_etf_fund_info_em_df)
 [784 rows x 6 columns]
 ```
 
-#### 香港基金-历史数据
+### 香港基金-历史数据
 
-接口: fund_hk_fund_hist_em
+接口：fund_hk_fund_hist_em
 
-目标地址: http://overseas.1234567.com.cn/f10/FundJz/968092#FHPS
+目标地址：http://overseas.1234567.com.cn/f10/FundJz/968092#FHPS
 
-描述: 东方财富网站-天天基金网-基金数据-香港基金-历史净值明细
+描述：东方财富网站-天天基金网-基金数据-香港基金-历史净值明细
 
-限量: 单次返回指定 code 和 symbol 所有历史数据
+限量：单次返回指定 code 和 symbol 所有历史数据
 
 输入参数
 
 | 名称     | 类型  | 描述                                                            |
 |--------|-----|---------------------------------------------------------------|
-| code   | str | code="1002200683"; 香港基金代码, 可以通过调用 **ak.fund_em_hk_rank()** 获取 |
+| code   | str | code="1002200683"；香港基金代码，可以通过调用 **ak.fund_em_hk_rank()** 获取 |
 | symbol | str | symbol="历史净值明细"; choice of {"历史净值明细", "分红送配详情"}               |
 
 输出参数-历史净值明细
@@ -1949,7 +2072,7 @@ print(fund_etf_fund_info_em_df)
 | 净值日期 | object  | -       |
 | 单位净值 | float64 | -       |
 | 日增长值 | float64 | -       |
-| 日增长率 | float64 | 注意单位: % |
+| 日增长率 | float64 | 注意单位：% |
 | 单位   | object  | -       |
 
 接口示例-历史净值明细
@@ -2011,17 +2134,17 @@ print(fund_hk_fund_hist_em_df)
 6  2020  2020-06-30  2020-06-30  2020-07-15  0.0669  元
 ```
 
-### 分红送配
+## 分红送配
 
-#### 基金累计分红
+### 基金累计分红
 
-接口: fund_etf_dividend_sina
+接口：fund_etf_dividend_sina
 
-目标地址: https://finance.sina.com.cn/fund/quotes/510050/bc.shtml
+目标地址：https://finance.sina.com.cn/fund/quotes/510050/bc.shtml
 
-描述: 新浪财经-基金-ETF 基金-累计分红
+描述：新浪财经-基金-ETF 基金-累计分红
 
-限量: 单次返回所有历史数据
+限量：单次返回所有历史数据
 
 输入参数
 
@@ -2041,7 +2164,7 @@ print(fund_hk_fund_hist_em_df)
 ```python
 import akshare as ak
 
-fund_etf_dividend_sina_df = fund_etf_dividend_sina(symbol="sh510050")
+fund_etf_dividend_sina_df = ak.fund_etf_dividend_sina(symbol="sh510050")
 print(fund_etf_dividend_sina_df)
 ```
 
@@ -2068,22 +2191,25 @@ print(fund_etf_dividend_sina_df)
 16 2024-12-02  0.717
 ```
 
-#### 基金分红
+### 基金分红
 
-接口: fund_fh_em
+接口：fund_fh_em
 
-目标地址: http://fund.eastmoney.com/data/fundfenhong.html
+目标地址：http://fund.eastmoney.com/data/fundfenhong.html
 
-描述: 天天基金网-基金数据-分红送配-基金分红
+描述：天天基金网-基金数据-分红送配-基金分红
 
-限量: 单次返回所有历史数据
+限量：单次返回所有历史数据
 
 输入参数
 
-| 名称   | 类型  | 描述                       |
-|------|-----|--------------------------|
-| year | str | year="2025"; 最早支持 1999 年 |
-
+| 名称   | 类型  | 描述                                                                                                                                                                                                                                                                                                                           |
+|------|-----|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| year | str | year="2025"；最早支持 1999 年                                                                                                                                                                                                                                                                                                     |
+| typ  | str | typ=""；空串表示全部；choice of {"指数型-其他", "指数型-海外股票", "指数型-固收", "指数型-股票", "债券型-中短债", "债券型-长债", "债券型-理财", "债券型-混合债", "债券型-混合一级", "债券型-混合二级", "货币型-普通货币", "货币型-浮动净值", "混合型-平衡", "混合型-偏债", "混合型-偏股", "混合型-灵活", "混合型-绝对收益", "股票型", "REITs", "Reits", "QDII-商品", "QDII-普通股票", "QDII-混合债", "QDII-混合偏股", "QDII-纯债", "QDII-REITs", "FOF"} |
+| rank | str | rank="BZDM"；排序字段；choice of {"BZDM", "ABBNAME", "DJR", "FSRQ", "FHFCZ", "FFR"}; "BZDM": 基金代码，"ABBNAME": 基金简称，"DJR": 权益登记日，"FSRQ": 除息日期，"FHFCZ": 分红（元/份），"FFR": 分红发放日                                                                                                                                                   |
+| sort | str | sort="asc"；排序方式；choice of {"asc", "desc"}                                                                                                                                                                                                                                                                                  |
+| page | int | page=-1；请求第page页数据；-1 表示全部页面                                                                                                                                                                                                                                                                                               |
 输出参数
 
 | 名称    | 类型      | 描述        |
@@ -2093,7 +2219,7 @@ print(fund_etf_dividend_sina_df)
 | 基金简称  | object  | -         |
 | 权益登记日 | object  | -         |
 | 除息日期  | object  | -         |
-| 分红    | float64 | 注意单位: 元/份 |
+| 分红    | float64 | 注意单位：元/份 |
 | 分红发放日 | object  | -         |
 
 接口示例
@@ -2123,21 +2249,25 @@ print(fund_fh_em_df)
 [6454 rows x 7 columns]
 ```
 
-#### 基金拆分
+### 基金拆分
 
-接口: fund_cf_em
+接口：fund_cf_em
 
-目标地址: http://fund.eastmoney.com/data/fundchaifen.html
+目标地址：http://fund.eastmoney.com/data/fundchaifen.html
 
-描述: 天天基金网-基金数据-分红送配-基金拆分
+描述：天天基金网-基金数据-分红送配-基金拆分
 
-限量: 单次返回所有历史数据
+限量：单次返回所有历史数据
 
 输入参数
 
-| 名称   | 类型  | 描述                       |
-|------|-----|--------------------------|
-| year | str | year="2025"; 最早支持 2005 年 |
+| 名称   | 类型  | 描述                                                                                                                                                                                                                             |
+|------|-----|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| year | str | year="2025"；最早支持 2005 年                                                                                                                                                                                                       |
+| typ  | str | typ=""；空串表示全部；choice of {"", "指数型-其他", "指数型-海外股票", "指数型-固收", "指数型-股票", "债券型-中短债", "债券型-长债", "债券型-可转债", "债券型-混合债", "债券型-混合一级", "债券型-混合二级", "商品（不含QDII）", "货币型", "混合型-平衡", "混合型-偏债", "混合型-偏股", "混合型-灵活", "股票型", "QDII", "FOF"} |
+| rank | str | rank="FSRQ"；排序字段；choice of {"BZDM", "ABBNAME", "FSRQ", "FHFCZ"}; "BZDM": 基金代码，"ABBNAME": 基金简称，"FSRQ": 拆分折算日，"FHFCZ": 拆分折算（每份）                                                                                             |
+| sort | str | sort="desc"; choice of {"asc", "desc"}                                                                                                                                                                                         |
+| page | int | page=-1；请求第page页数据；-1 表示全部页面                                                                                                                                                                                                 |
 
 输出参数
 
@@ -2148,7 +2278,7 @@ print(fund_fh_em_df)
 | 基金简称  | object  | -        |
 | 拆分折算日 | object  | -        |
 | 拆分类型  | object  | -        |
-| 拆分折算  | float64 | 注意单位: 每份 |
+| 拆分折算  | float64 | 注意单位：每份 |
 
 接口示例
 
@@ -2177,15 +2307,15 @@ print(fund_cf_em_df)
 [82 rows x 6 columns]
 ```
 
-#### 基金分红排行
+### 基金分红排行
 
-接口: fund_fh_rank_em
+接口：fund_fh_rank_em
 
-目标地址: http://fund.eastmoney.com/data/fundleijifenhong.html
+目标地址：http://fund.eastmoney.com/data/fundleijifenhong.html
 
-描述: 天天基金网-基金数据-分红送配-基金分红排行
+描述：天天基金网-基金数据-分红送配-基金分红排行
 
-限量: 单次返回所有历史数据
+限量：单次返回所有历史数据
 
 输入参数
 
@@ -2200,7 +2330,7 @@ print(fund_cf_em_df)
 | 序号   | int64   | -         |
 | 基金代码 | object  | -         |
 | 基金简称 | object  | -         |
-| 累计分红 | float64 | 注意单位: 元/份 |
+| 累计分红 | float64 | 注意单位：元/份 |
 | 累计次数 | int64   | -         |
 | 成立日期 | object  | -         |
 
@@ -2209,7 +2339,7 @@ print(fund_cf_em_df)
 ```python
 import akshare as ak
 
-fund_fh_rank_em_df = ak.fund_fh_rank_em(2025)
+fund_fh_rank_em_df = ak.fund_fh_rank_em()
 print(fund_fh_rank_em_df)
 ```
 
@@ -2230,17 +2360,17 @@ print(fund_fh_rank_em_df)
 4620  4621  008139        鑫元一年中高等级债   0.000100     1  2020-03-18
 ```
 
-### 基金排行
+## 基金排行
 
-#### 开放式基金排行
+### 开放式基金排行
 
-接口: fund_open_fund_rank_em
+接口：fund_open_fund_rank_em
 
-目标地址: https://fund.eastmoney.com/data/fundranking.html
+目标地址：https://fund.eastmoney.com/data/fundranking.html
 
-描述: 东方财富网-数据中心-开放式基金排行
+描述：东方财富网-数据中心-开放式基金排行
 
-限量: 单次返回当前时刻所有数据
+限量：单次返回当前时刻所有数据
 
 输入参数
 
@@ -2258,17 +2388,17 @@ print(fund_fh_rank_em_df)
 | 日期   | object  | -       |
 | 单位净值 | float64 | -       |
 | 累计净值 | float64 | -       |
-| 日增长率 | float64 | 注意单位: % |
-| 近1周  | float64 | 注意单位: % |
-| 近1月  | float64 | 注意单位: % |
-| 近3月  | float64 | 注意单位: % |
-| 近6月  | float64 | 注意单位: % |
-| 近1年  | float64 | 注意单位: % |
-| 近2年  | float64 | 注意单位: % |
-| 近3年  | float64 | 注意单位: % |
-| 今年来  | float64 | 注意单位: % |
-| 成立来  | float64 | 注意单位: % |
-| 自定义  | float64 | 注意单位: % |
+| 日增长率 | float64 | 注意单位：% |
+| 近1周  | float64 | 注意单位：% |
+| 近1月  | float64 | 注意单位：% |
+| 近3月  | float64 | 注意单位：% |
+| 近6月  | float64 | 注意单位：% |
+| 近1年  | float64 | 注意单位：% |
+| 近2年  | float64 | 注意单位：% |
+| 近3年  | float64 | 注意单位：% |
+| 今年来  | float64 | 注意单位：% |
+| 成立来  | float64 | 注意单位：% |
+| 自定义  | float64 | 注意单位：% |
 | 手续费  | object  | -       |
 
 接口示例
@@ -2298,15 +2428,15 @@ print(fund_open_fund_rank_em_df)
 [15010 rows x 18 columns]
 ```
 
-#### 场内交易基金排行榜
+### 场内交易基金排行榜
 
-接口: fund_exchange_rank_em
+接口：fund_exchange_rank_em
 
-目标地址: https://fund.eastmoney.com/data/fbsfundranking.html
+目标地址：https://fund.eastmoney.com/data/fbsfundranking.html
 
-描述: 东方财富网-数据中心-场内交易基金排行榜
+描述：东方财富网-数据中心-场内交易基金排行榜
 
-限量: 单次返回当前时刻所有数据, 每个交易日 17 点后更新
+限量：单次返回当前时刻所有数据，每个交易日 17 点后更新
 
 输入参数
 
@@ -2325,15 +2455,15 @@ print(fund_open_fund_rank_em_df)
 | 日期   | object  | -       |
 | 单位净值 | float64 | -       |
 | 累计净值 | float64 | -       |
-| 近1周  | float64 | 注意单位: % |
-| 近1月  | float64 | 注意单位: % |
-| 近3月  | float64 | 注意单位: % |
-| 近6月  | float64 | 注意单位: % |
-| 近1年  | float64 | 注意单位: % |
-| 近2年  | float64 | 注意单位: % |
-| 近3年  | float64 | 注意单位: % |
-| 今年来  | float64 | 注意单位: % |
-| 成立来  | float64 | 注意单位: % |
+| 近1周  | float64 | 注意单位：% |
+| 近1月  | float64 | 注意单位：% |
+| 近3月  | float64 | 注意单位：% |
+| 近6月  | float64 | 注意单位：% |
+| 近1年  | float64 | 注意单位：% |
+| 近2年  | float64 | 注意单位：% |
+| 近3年  | float64 | 注意单位：% |
+| 今年来  | float64 | 注意单位：% |
+| 成立来  | float64 | 注意单位：% |
 | 成立日期 | object  | -       |
 
 接口示例
@@ -2363,15 +2493,15 @@ print(fund_exchange_rank_em_df)
 [880 rows x 17 columns]
 ```
 
-#### 货币型基金排行
+### 货币型基金排行
 
-接口: fund_money_rank_em
+接口：fund_money_rank_em
 
-目标地址: https://fund.eastmoney.com/data/hbxfundranking.html
+目标地址：https://fund.eastmoney.com/data/hbxfundranking.html
 
-描述: 东方财富网-数据中心-货币型基金排行
+描述：东方财富网-数据中心-货币型基金排行
 
-限量: 单次返回当前时刻所有数据, 每个交易日 17 点后更新, 货币基金的单位净值均为 1.0000 元，最新一年期定存利率: 1.50%
+限量：单次返回当前时刻所有数据，每个交易日 17 点后更新，货币基金的单位净值均为 1.0000 元，最新一年期定存利率：1.50%
 
 输入参数
 
@@ -2387,19 +2517,19 @@ print(fund_exchange_rank_em_df)
 | 基金代码     | object  | -       |
 | 基金简称     | object  | -       |
 | 日期       | object  | -       |
-| 万份收益     | float64 | 注意单位: % |
-| 年化收益率7日  | float64 | 注意单位: % |
-| 年化收益率14日 | float64 | 注意单位: % |
-| 年化收益率28日 | float64 | 注意单位: % |
-| 近1月      | float64 | 注意单位: % |
-| 近3月      | float64 | 注意单位: % |
-| 近6月      | float64 | 注意单位: % |
-| 近1年      | float64 | 注意单位: % |
-| 近2年      | float64 | 注意单位: % |
-| 近3年      | float64 | 注意单位: % |
-| 近5年      | float64 | 注意单位: % |
-| 今年来      | float64 | 注意单位: % |
-| 成立来      | float64 | 注意单位: % |
+| 万份收益     | float64 | 注意单位：% |
+| 年化收益率7日  | float64 | 注意单位：% |
+| 年化收益率14日 | float64 | 注意单位：% |
+| 年化收益率28日 | float64 | 注意单位：% |
+| 近1月      | float64 | 注意单位：% |
+| 近3月      | float64 | 注意单位：% |
+| 近6月      | float64 | 注意单位：% |
+| 近1年      | float64 | 注意单位：% |
+| 近2年      | float64 | 注意单位：% |
+| 近3年      | float64 | 注意单位：% |
+| 近5年      | float64 | 注意单位：% |
+| 今年来      | float64 | 注意单位：% |
+| 成立来      | float64 | 注意单位：% |
 | 手续费      | object  | -       |
 
 接口示例
@@ -2429,15 +2559,15 @@ print(fund_money_rank_em_df)
 [544 rows x 18 columns]
 ```
 
-#### 理财基金排行
+### 理财基金排行
 
-接口: fund_lcx_rank_em
+接口：fund_lcx_rank_em
 
-目标地址: https://fund.eastmoney.com/data/lcxfundranking.html#t;c0;r;sSYL_Z;ddesc;pn50;f;os1;
+目标地址：https://fund.eastmoney.com/data/lcxfundranking.html#t;c0;r;sSYL_Z;ddesc;pn50;f;os1;
 
-描述: 东方财富网-数据中心-理财基金排行, 每个交易日17点后更新, 货币基金的单位净值均为 1.0000 元，最新一年期定存利率: 1.50%
+描述：东方财富网-数据中心-理财基金排行，每个交易日17点后更新，货币基金的单位净值均为 1.0000 元，最新一年期定存利率：1.50%
 
-限量: 由于目标网站没有数据，该接口暂时未能返回数据
+限量：由于目标网站没有数据，该接口暂时未能返回数据
 
 输入参数
 
@@ -2454,15 +2584,15 @@ print(fund_money_rank_em_df)
 | 基金简称     | object  | -       |
 | 日期       | object  | -       |
 | 万份收益     | float64 | -       |
-| 年化收益率7日  | float64 | 注意单位: % |
-| 年化收益率14日 | float64 | 注意单位: % |
-| 年化收益率28日 | float64 | 注意单位: % |
-| 近1周      | float64 | 注意单位: % |
-| 近1月      | float64 | 注意单位: % |
-| 近3月      | float64 | 注意单位: % |
-| 近6月      | float64 | 注意单位: % |
-| 今年来      | float64 | 注意单位: % |
-| 成立来      | float64 | 注意单位: % |
+| 年化收益率7日  | float64 | 注意单位：% |
+| 年化收益率14日 | float64 | 注意单位：% |
+| 年化收益率28日 | float64 | 注意单位：% |
+| 近1周      | float64 | 注意单位：% |
+| 近1月      | float64 | 注意单位：% |
+| 近3月      | float64 | 注意单位：% |
+| 近6月      | float64 | 注意单位：% |
+| 今年来      | float64 | 注意单位：% |
+| 成立来      | float64 | 注意单位：% |
 | 可购买      | float64 | 可购买     |
 | 手续费      | object  | -       |
 
@@ -2483,15 +2613,15 @@ print(fund_lcx_rank_em_df)
 1   2  530014  建信双周理财A  2021-01-17  0.7035  ...  0.98  0.12   33.374   1  0.00%
 ```
 
-#### 香港基金排行
+### 香港基金排行
 
-接口: fund_hk_rank_em
+接口：fund_hk_rank_em
 
-目标地址: https://overseas.1234567.com.cn/FundList
+目标地址：https://overseas.1234567.com.cn/FundList
 
-描述: 东方财富网-数据中心-基金排行-香港基金排行
+描述：东方财富网-数据中心-基金排行-香港基金排行
 
-限量: 单次返回当前时刻所有数据
+限量：单次返回当前时刻所有数据
 
 输入参数
 
@@ -2509,18 +2639,18 @@ print(fund_lcx_rank_em_df)
 | 币种     | object  | -                        |
 | 日期     | object  | -                        |
 | 单位净值   | float64 | -                        |
-| 日增长率   | float64 | 注意单位: %                  |
-| 近1周    | float64 | 注意单位: %                  |
-| 近1月    | float64 | 注意单位: %                  |
-| 近3月    | float64 | 注意单位: %                  |
-| 近6月    | float64 | 注意单位: %                  |
-| 近1年    | float64 | 注意单位: %                  |
-| 近2年    | float64 | 注意单位: %                  |
-| 近3年    | float64 | 注意单位: %                  |
-| 今年来    | float64 | 注意单位: %                  |
-| 成立来    | float64 | 注意单位: %                  |
+| 日增长率   | float64 | 注意单位：%                  |
+| 近1周    | float64 | 注意单位：%                  |
+| 近1月    | float64 | 注意单位：%                  |
+| 近3月    | float64 | 注意单位：%                  |
+| 近6月    | float64 | 注意单位：%                  |
+| 近1年    | float64 | 注意单位：%                  |
+| 近2年    | float64 | 注意单位：%                  |
+| 近3年    | float64 | 注意单位：%                  |
+| 今年来    | float64 | 注意单位：%                  |
+| 成立来    | float64 | 注意单位：%                  |
 | 可购买    | object  | -                        |
-| 香港基金代码 | object  | 用于查询历史净值数据, 通过该字段查询相关的数据 |
+| 香港基金代码 | object  | 用于查询历史净值数据，通过该字段查询相关的数据 |
 
 接口示例
 
@@ -2549,22 +2679,22 @@ print(fund_hk_rank_em_df)
 [112 rows x 18 columns]
 ```
 
-### 基金业绩-雪球
+## 基金业绩-雪球
 
-接口: fund_individual_achievement_xq
+接口：fund_individual_achievement_xq
 
-目标地址: https://danjuanfunds.com/rn/funding/:code/RankInfo?symbol=000001&fd_type=2&btn_pos=1
+目标地址：https://danjuanfunds.com/rn/funding/:code/RankInfo?symbol=000001&fd_type=2&btn_pos=1
 
-描述: 雪球基金-基金详情-基金业绩-详情
+描述：雪球基金-基金详情-基金业绩-详情
 
-限量: 单次返回单只基金业绩详情
+限量：单次返回单只基金业绩详情
 
 输入参数
 
 | 名称      | 类型    | 描述                      |
 |---------|-------|-------------------------|
-| symbol  | str   | symbol="000001"; 基金代码   |
-| timeout | float | timeout=None; 默认不设置超时参数 |
+| symbol  | str   | symbol="000001"；基金代码   |
+| timeout | float | timeout=None；默认不设置超时参数 |
 
 输出参数
 
@@ -2572,8 +2702,8 @@ print(fund_hk_rank_em_df)
 |----------|---------|---------|
 | 业绩类型     | object  | -       |
 | 周期       | object  | -       |
-| 本产品区间收益  | float64 | 注意单位: % |
-| 本产品最大回撒  | float64 | 注意单位: % |
+| 本产品区间收益  | float64 | 注意单位：% |
+| 本产品最大回撒  | float64 | 注意单位：% |
 | 周期收益同类排名 | object  | -       |
 
 接口示例
@@ -2621,21 +2751,23 @@ print(fund_individual_achievement_xq_df)
 29  阶段业绩   近5年   -3.250474    48.55  2300/2414
 ```
 
-### 净值估算
+## 净值估算
 
-接口: fund_value_estimation_em
+接口：fund_value_estimation_em
 
-目标地址: http://fund.eastmoney.com/fundguzhi.html
+目标地址：https://fund.eastmoney.com/lof_fundguzhi1.html
 
-描述: 东方财富网-数据中心-净值估算
+描述：东方财富网-数据中心-净值估算
 
-限量: 单次返回当前交易日指定 symbol 的所有数据
+限量：单次返回当前交易日指定 symbol 的所有数据
+
+说明：东方财富旧统一估值接口当前大多返回“暂无数据”；AKShare 现对 `全部` 和 `指数型` 改为解析东财仍公开可见的静态估值页，其余类别若上游未提供数据则返回空的 `pandas.DataFrame`
 
 输入参数
 
 | 名称     | 类型  | 描述                                                                                                    |
 |--------|-----|-------------------------------------------------------------------------------------------------------|
-| symbol | str | symbol='全部'; 默认返回所有数据; choice of {'全部', '股票型', '混合型', '债券型', '指数型', 'QDII', 'ETF联接', 'LOF', '场内交易基金'} |
+| symbol | str | symbol='全部'; choice of {'全部', '股票型', '混合型', '债券型', '指数型', 'QDII', 'ETF联接', 'LOF', '场内交易基金'} |
 
 输出参数
 
@@ -2677,22 +2809,22 @@ print(fund_value_estimation_em_df)
 4850  4851  011059  ...     ---             ---
 ```
 
-### 基金数据分析
+## 基金数据分析
 
-接口: fund_individual_analysis_xq
+接口：fund_individual_analysis_xq
 
-目标地址: https://danjuanfunds.com/funding/000001
+目标地址：https://danjuanfunds.com/funding/000001
 
-描述: 雪球基金-基金详情-数据分析
+描述：雪球基金-基金详情-数据分析
 
-限量: 返回单只基金历史表现分析数据
+限量：返回单只基金历史表现分析数据
 
 输入参数
 
 | 名称      | 类型    | 描述                      |
 |---------|-------|-------------------------|
-| symbol  | str   | symbol="000001"; 基金代码   |
-| timeout | float | timeout=None; 默认不设置超时参数 |
+| symbol  | str   | symbol="000001"；基金代码   |
+| timeout | float | timeout=None；默认不设置超时参数 |
 
 输出参数
 
@@ -2723,22 +2855,22 @@ print(fund_individual_analysis_xq_df)
 2  近5年         2        57  19.04   -0.11  48.55
 ```
 
-### 基金盈利概率
+## 基金盈利概率
 
-接口: fund_individual_profit_probability_xq
+接口：fund_individual_profit_probability_xq
 
-目标地址: https://danjuanfunds.com/funding/000001
+目标地址：https://danjuanfunds.com/funding/000001
 
-描述: 雪球基金-基金详情-盈利概率；历史任意时点买入，持有满X时间，盈利概率，以及平均收益
+描述：雪球基金-基金详情-盈利概率；历史任意时点买入，持有满X时间，盈利概率，以及平均收益
 
-限量: 单次返回单只基金历史任意时点买入，持有满 X 时间，盈利概率，以及平均收益
+限量：单次返回单只基金历史任意时点买入，持有满 X 时间，盈利概率，以及平均收益
 
 输入参数
 
 | 名称      | 类型    | 描述                      |
 |---------|-------|-------------------------|
-| symbol  | str   | symbol="000001"; 基金代码   |
-| timeout | float | timeout=None; 默认不设置超时参数 |
+| symbol  | str   | symbol="000001"；基金代码   |
+| timeout | float | timeout=None；默认不设置超时参数 |
 
 输出参数
 
@@ -2767,23 +2899,23 @@ print(fund_individual_profit_probability_xq_df)
 3   满3年    76  51.16
 ```
 
-### 基金持仓资产比例
+## 基金持仓资产比例
 
-接口: fund_individual_detail_hold_xq
+接口：fund_individual_detail_hold_xq
 
-目标地址: https://danjuanfunds.com/rn/fund-detail/archive?id=103&code=000001
+目标地址：https://danjuanfunds.com/rn/fund-detail/archive?id=103&code=000001
 
-描述: 雪球基金-基金详情-基金持仓-详情
+描述：雪球基金-基金详情-基金持仓-详情
 
-限量: 单次返回单只基金指定日期的持仓大类资产比例
+限量：单次返回单只基金指定日期的持仓大类资产比例
 
 输入参数
 
 | 名称      | 类型    | 描述                      |
 |---------|-------|-------------------------|
-| symbol  | str   | symbol="000001"; 基金代码   |
-| date    | str   | date="20231231"; 季度日期   |
-| timeout | float | timeout=None; 默认不设置超时参数 |
+| symbol  | str   | symbol="000001"；基金代码   |
+| date    | str   | date="20231231"；季度日期   |
+| timeout | float | timeout=None；默认不设置超时参数 |
 
 输出参数
 
@@ -2810,21 +2942,21 @@ print(fund_individual_detail_hold_xq_df)
 2   其他  29.09
 ```
 
-### 基金基本概况
+## 基金基本概况
 
-接口: fund_overview_em
+接口：fund_overview_em
 
-目标地址: https://fundf10.eastmoney.com/jbgk_015641.html
+目标地址：https://fundf10.eastmoney.com/jbgk_015641.html
 
-描述: 天天基金-基金档案-基本概况
+描述：天天基金-基金档案-基本概况
 
-限量: 单次返回指定 symbol 的数据
+限量：单次返回指定 symbol 的数据
 
 输入参数
 
 | 名称     | 类型  | 描述                    |
 |--------|-----|-----------------------|
-| symbol | str | symbol="015641"; 基金代码 |
+| symbol | str | symbol="015641"；基金代码 |
 
 输出参数
 
@@ -2866,21 +2998,21 @@ print(fund_overview_em_df)
 [1 rows x 18 columns]
 ```
 
-### 基金交易费率
+## 基金交易费率
 
-接口: fund_fee_em
+接口：fund_fee_em
 
-目标地址: https://fundf10.eastmoney.com/jjfl_015641.html
+目标地址：https://fundf10.eastmoney.com/jjfl_015641.html
 
-描述: 天天基金-基金档案-购买信息
+描述：天天基金-基金档案-购买信息
 
-限量: 单次返回指定 symbol 的 indicator 数据
+限量：单次返回指定 symbol 的 indicator 数据
 
 输入参数
 
 | 名称        | 类型  | 描述                                                                                                          |
 |-----------|-----|-------------------------------------------------------------------------------------------------------------|
-| symbol    | str | symbol="015641"; 基金代码                                                                                       |
+| symbol    | str | symbol="015641"；基金代码                                                                                       |
 | indicator | str | indicator="申购费率"; choice of {"交易状态", "申购与赎回金额", "交易确认日", "运作费用", "认购费率（前端）", "认购费率（后端）","申购费率（前端）", "赎回费率"} |
 
 输出参数
@@ -2910,22 +3042,22 @@ print(fund_fee_em_df)
 3          大于等于500万元  ---  每笔1000元  每笔1000元
 ```
 
-### 基金交易规则
+## 基金交易规则
 
-接口: fund_individual_detail_info_xq
+接口：fund_individual_detail_info_xq
 
-目标地址: https://danjuanfunds.com/djapi/fund/detail/675091
+目标地址：https://danjuanfunds.com/djapi/fund/detail/675091
 
-描述: 雪球基金-基金详情-基金交易规则
+描述：雪球基金-基金详情-基金交易规则
 
-限量: 单次返回单只基金基金交易规则
+限量：单次返回单只基金基金交易规则
 
 输入参数
 
 | 名称      | 类型    | 描述                      |
 |---------|-------|-------------------------|
-| symbol  | str   | symbol="000001"; 基金代码   |
-| timeout | float | timeout=None; 默认不设置超时参数 |
+| symbol  | str   | symbol="000001"；基金代码   |
+| timeout | float | timeout=None；默认不设置超时参数 |
 
 输出参数
 
@@ -2958,22 +3090,22 @@ print(fund_individual_detail_info_xq_df)
 7  其他费用                 基金托管费     0.2
 ```
 
-### 基金持仓
+## 基金持仓
 
-接口: fund_portfolio_hold_em
+接口：fund_portfolio_hold_em
 
-目标地址: https://fundf10.eastmoney.com/ccmx_000001.html
+目标地址：https://fundf10.eastmoney.com/ccmx_000001.html
 
-描述: 天天基金网-基金档案-投资组合-基金持仓
+描述：天天基金网-基金档案-投资组合-基金持仓
 
-限量: 单次返回指定 symbol 和 date 的所有持仓数据
+限量：单次返回指定 symbol 和 date 的所有持仓数据
 
 输入参数
 
 | 名称     | 类型  | 描述                                                       |
 |--------|-----|----------------------------------------------------------|
-| symbol | str | symbol="000001"; 基金代码, 可以通过调用 **ak.fund_name_em()** 接口获取 |
-| date   | str | date="2024"; 指定年份                                        |
+| symbol | str | symbol="000001"；基金代码，可以通过调用 **ak.fund_name_em()** 接口获取 |
+| date   | str | date="2024"；指定年份，传入空字符串 `""` 时返回最新可用年份数据          |
 
 输出参数
 
@@ -2982,9 +3114,9 @@ print(fund_individual_detail_info_xq_df)
 | 序号    | int64   | -        |
 | 股票代码  | object  | -        |
 | 股票名称  | object  | -        |
-| 占净值比例 | float64 | 注意单位: %  |
-| 持股数   | float64 | 注意单位: 万股 |
-| 持仓市值  | float64 | 注意单位: 万元 |
+| 占净值比例 | float64 | 注意单位：%  |
+| 持股数   | float64 | 注意单位：万股 |
+| 持仓市值  | float64 | 注意单位：万元 |
 | 季度    | object  | -        |
 
 接口示例
@@ -3012,22 +3144,22 @@ print(fund_portfolio_hold_em_df)
 9  10  000100  TCL科技   1.82  893.37  4172.03  2024年1季度股票投资明细
 ```
 
-### 债券持仓
+## 债券持仓
 
-接口: fund_portfolio_bond_hold_em
+接口：fund_portfolio_bond_hold_em
 
-目标地址: https://fundf10.eastmoney.com/ccmx_000001.html
+目标地址：https://fundf10.eastmoney.com/ccmx1_000001.html
 
-描述: 天天基金网-基金档案-投资组合-债券持仓
+描述：天天基金网-基金档案-投资组合-债券持仓
 
-限量: 单次返回指定 symbol 和 date 的所有持仓数据
+限量：单次返回指定 symbol 和 date 的所有持仓数据
 
 输入参数
 
 | 名称     | 类型  | 描述                                                       |
 |--------|-----|----------------------------------------------------------|
-| symbol | str | symbol="000001"; 基金代码, 可以通过调用 **ak.fund_name_em()** 接口获取 |
-| date   | str | date="2023"; 指定年份                                        |
+| symbol | str | symbol="000001"；基金代码，可以通过调用 **ak.fund_name_em()** 接口获取 |
+| date   | str | date="2023"；指定年份                                        |
 
 输出参数
 
@@ -3036,8 +3168,8 @@ print(fund_portfolio_hold_em_df)
 | 序号    | int64   | -        |
 | 债券代码  | object  | -        |
 | 债券名称  | object  | -        |
-| 占净值比例 | float64 | 注意单位: %  |
-| 持仓市值  | float64 | 注意单位: 万元 |
+| 占净值比例 | float64 | 注意单位：%  |
+| 持仓市值  | float64 | 注意单位：万元 |
 | 季度    | object  | -        |
 
 接口示例
@@ -3106,22 +3238,22 @@ print(fund_portfolio_bond_hold_em_df)
 50  51     123107         温氏转债   0.00      0.03  2023年1季度债券投资明细
 ```
 
-### 行业配置
+## 行业配置
 
-接口: fund_portfolio_industry_allocation_em
+接口：fund_portfolio_industry_allocation_em
 
-目标地址: https://fundf10.eastmoney.com/hytz_000001.html
+目标地址：https://fundf10.eastmoney.com/hytz_000001.html
 
-描述: 天天基金网-基金档案-投资组合-行业配置
+描述：天天基金网-基金档案-投资组合-行业配置
 
-限量: 单次返回指定 symbol 和 date 的所有持仓数据
+限量：单次返回指定 symbol 和 date 的所有持仓数据
 
 输入参数
 
 | 名称     | 类型  | 描述                                                       |
 |--------|-----|----------------------------------------------------------|
-| symbol | str | symbol="000001"; 基金代码, 可以通过调用 **ak.fund_name_em()** 接口获取 |
-| date   | str | date="2023"; 指定年份                                        |
+| symbol | str | symbol="000001"；基金代码，可以通过调用 **ak.fund_name_em()** 接口获取 |
+| date   | str | date="2023"；指定年份                                        |
 
 输出参数
 
@@ -3129,8 +3261,8 @@ print(fund_portfolio_bond_hold_em_df)
 |-------|---------|----------|
 | 序号    | int64   | -        |
 | 行业类别  | object  | -        |
-| 占净值比例 | float64 | 注意单位: %  |
-| 市值    | float64 | 注意单位: 万元 |
+| 占净值比例 | float64 | 注意单位：%  |
+| 市值    | float64 | 注意单位：万元 |
 | 截止时间  | object  | -        |
 
 接口示例
@@ -3185,23 +3317,23 @@ print(fund_portfolio_industry_allocation_em_df)
 36  37     水利、环境和公共设施管理业   0.00      10.346959  2023-03-31
 ```
 
-### 重大变动
+## 重大变动
 
-接口: fund_portfolio_change_em
+接口：fund_portfolio_change_em
 
-目标地址: https://fundf10.eastmoney.com/ccbd_000001.html
+目标地址：https://fundf10.eastmoney.com/ccbd_000001.html
 
-描述: 天天基金网-基金档案-投资组合-重大变动
+描述：天天基金网-基金档案-投资组合-重大变动
 
-限量: 单次返回指定 symbol、indicator 和 date 的所有重大变动数据
+限量：单次返回指定 symbol、indicator 和 date 的所有重大变动数据
 
 输入参数
 
 | 名称        | 类型  | 描述                                                       |
 |-----------|-----|----------------------------------------------------------|
-| symbol    | str | symbol="003567"; 基金代码, 可以通过调用 **ak.fund_name_em()** 接口获取 |
+| symbol    | str | symbol="003567"；基金代码，可以通过调用 **ak.fund_name_em()** 接口获取 |
 | indicator | str | indicator="累计买入"; choice of {"累计买入", "累计卖出"}             |
-| date      | str | date="2023"; 指定年份                                        |
+| date      | str | date="2023"；指定年份                                        |
 
 输出参数
 
@@ -3210,8 +3342,8 @@ print(fund_portfolio_industry_allocation_em_df)
 | 序号          | int64   | -        |
 | 股票代码        | object  | -        |
 | 股票名称        | object  | -        |
-| 本期累计买入金额    | float64 | 注意单位: 万元 |
-| 占期初基金资产净值比例 | float64 | 注意单位: %  |
+| 本期累计买入金额    | float64 | 注意单位：万元 |
+| 占期初基金资产净值比例 | float64 | 注意单位：%  |
 | 季度          | object  | -        |
 
 接口示例
@@ -3249,17 +3381,17 @@ print(fund_portfolio_change_em_df)
 19  20  600641  万业企业  16500.35         1.51  2023年2季度累计买入股票明细
 ```
 
-### 基金评级
+## 基金评级
 
-#### 基金评级总汇
+### 基金评级总汇
 
-接口: fund_rating_all
+接口：fund_rating_all
 
-目标地址: https://fund.eastmoney.com/data/fundrating.html
+目标地址：https://fund.eastmoney.com/data/fundrating.html
 
-描述: 天天基金网-基金评级-基金评级总汇
+描述：天天基金网-基金评级-基金评级总汇
 
-限量: 单次返回所有基金评级数据
+限量：单次返回所有基金评级数据
 
 输入参数
 
@@ -3309,15 +3441,15 @@ print(fund_rating_all_df)
 [14523 rows x 11 columns]
 ```
 
-#### 上海证券评级
+### 上海证券评级
 
-接口: fund_rating_sh
+接口：fund_rating_sh
 
-目标地址: https://fund.eastmoney.com/data/fundrating_3.html
+目标地址：https://fund.eastmoney.com/data/fundrating_3.html
 
-描述: 天天基金网-基金评级-上海证券评级
+描述：天天基金网-基金评级-上海证券评级
 
-限量: 单次返回指定交易日的所有基金评级数据
+限量：单次返回指定交易日的所有基金评级数据
 
 输入参数
 
@@ -3339,10 +3471,10 @@ print(fund_rating_all_df)
 | 5年期评级-较上期  | float64 | -       |
 | 单位净值       | float64 | -       |
 | 日期         | object  | -       |
-| 日增长率       | float64 | 注意单位: % |
-| 近1年涨幅      | float64 | 注意单位: % |
-| 近3年涨幅      | float64 | 注意单位: % |
-| 近5年涨幅      | float64 | 注意单位: % |
+| 日增长率       | float64 | 注意单位：% |
+| 近1年涨幅      | float64 | 注意单位：% |
+| 近3年涨幅      | float64 | 注意单位：% |
+| 近5年涨幅      | float64 | 注意单位：% |
 | 手续费        | object  | -       |
 | 类型         | object  | -       |
 
@@ -3373,15 +3505,15 @@ print(fund_rating_sh_df)
 [4637 rows x 16 columns]
 ```
 
-#### 招商证券评级
+### 招商证券评级
 
-接口: fund_rating_zs
+接口：fund_rating_zs
 
-目标地址: http://fund.eastmoney.com/data/fundrating_2.html
+目标地址：http://fund.eastmoney.com/data/fundrating_2.html
 
-描述: 天天基金网-基金评级-招商证券评级
+描述：天天基金网-基金评级-招商证券评级
 
-限量: 单次返回指定交易日的所有基金评级数据
+限量：单次返回指定交易日的所有基金评级数据
 
 输入参数
 
@@ -3401,10 +3533,10 @@ print(fund_rating_sh_df)
 | 3年期评级-较上期  | float64 | -       |
 | 单位净值       | float64 | -       |
 | 日期         | object  | -       |
-| 日增长率       | float64 | 注意单位: % |
-| 近1年涨幅      | float64 | 注意单位: % |
-| 近3年涨幅      | float64 | 注意单位: % |
-| 近5年涨幅      | float64 | 注意单位: % |
+| 日增长率       | float64 | 注意单位：% |
+| 近1年涨幅      | float64 | 注意单位：% |
+| 近3年涨幅      | float64 | 注意单位：% |
+| 近5年涨幅      | float64 | 注意单位：% |
 | 手续费        | object  | -       |
 
 接口示例
@@ -3434,15 +3566,15 @@ print(fund_rating_zs_df)
 [3324 rows x 13 columns]
 ```
 
-#### 济安金信评级
+### 济安金信评级
 
-接口: fund_rating_ja
+接口：fund_rating_ja
 
-目标地址: https://fund.eastmoney.com/data/fundrating_4.html
+目标地址：https://fund.eastmoney.com/data/fundrating_4.html
 
-描述: 天天基金网-基金评级-济安金信评级
+描述：天天基金网-基金评级-济安金信评级
 
-限量: 单次返回指定交易日的所有基金评级数据
+限量：单次返回指定交易日的所有基金评级数据
 
 输入参数
 
@@ -3462,10 +3594,10 @@ print(fund_rating_zs_df)
 | 3年期评级-较上期  | float64 | -       |
 | 单位净值       | float64 | -       |
 | 日期         | object  | -       |
-| 日增长率       | float64 | 注意单位: % |
-| 近1年涨幅      | float64 | 注意单位: % |
-| 近3年涨幅      | float64 | 注意单位: % |
-| 近5年涨幅      | float64 | 注意单位: % |
+| 日增长率       | float64 | 注意单位：% |
+| 近1年涨幅      | float64 | 注意单位：% |
+| 近3年涨幅      | float64 | 注意单位：% |
+| 近5年涨幅      | float64 | 注意单位：% |
 | 手续费        | object  | -       |
 | 类型         | object  | -       |
 
@@ -3496,15 +3628,15 @@ print(fund_rating_ja_df)
 [7723 rows x 14 columns]
 ```
 
-### 基金经理
+## 基金经理
 
-接口: fund_manager_em
+接口：fund_manager_em
 
-目标地址: https://fund.eastmoney.com/manager/default.html
+目标地址：https://fund.eastmoney.com/manager/default.html
 
-描述: 天天基金网-基金数据-基金经理大全
+描述：天天基金网-基金数据-基金经理大全
 
-限量: 单次返回所有基金经理数据
+限量：单次返回所有基金经理数据
 
 输入参数
 
@@ -3521,9 +3653,9 @@ print(fund_rating_ja_df)
 | 所属公司      | object  | -        |
 | 现任基金代码    | object  | -        |
 | 现任基金      | object  | -        |
-| 累计从业时间    | int64   | 注意单位: 天  |
-| 现任基金资产总规模 | float64 | 注意单位: 亿元 |
-| 现任基金最佳回报  | float64 | 注意单位: %  |
+| 累计从业时间    | int64   | 注意单位：天  |
+| 现任基金资产总规模 | float64 | 注意单位：亿元 |
+| 现任基金最佳回报  | float64 | 注意单位：%  |
 
 接口示例
 
@@ -3552,15 +3684,15 @@ print(fund_manager_em_df)
 [32083 rows x 8 columns]
 ```
 
-### 新发基金
+## 新发基金
 
-接口: fund_new_found_em
+接口：fund_new_found_em
 
-目标地址: https://fund.eastmoney.com/data/xinfound.html
+目标地址：https://fund.eastmoney.com/data/xinfound.html
 
-描述: 天天基金网-基金数据-新发基金-新成立基金
+描述：天天基金网-基金数据-新发基金-新成立基金
 
-限量: 单次返回所有新发基金数据
+限量：单次返回所有新发基金数据
 
 输入参数
 
@@ -3577,12 +3709,12 @@ print(fund_manager_em_df)
 | 发行公司  | object  | -        |
 | 基金类型  | object  | -        |
 | 集中认购期 | object  | -        |
-| 募集份额  | float64 | 注意单位: 亿份 |
+| 募集份额  | float64 | 注意单位：亿份 |
 | 成立日期  | object  | -        |
-| 成立来涨幅 | float64 | 注意单位: %  |
+| 成立来涨幅 | float64 | 注意单位：%  |
 | 基金经理  | object  | -        |
 | 申购状态  | object  | -        |
-| 优惠费率  | float64 | 注意单位: %  |
+| 优惠费率  | float64 | 注意单位：%  |
 
 接口示例
 
@@ -3611,17 +3743,74 @@ print(fund_new_found_em_df)
 [7315 rows x 11 columns]
 ```
 
-### 基金规模
+接口：fund_new_found_ths
 
-#### 开放式基金
+目标地址：https://fund.10jqka.com.cn/datacenter/xfjj/
 
-接口: fund_scale_open_sina
+描述：同花顺-基金数据-新发基金
 
-目标地址: https://vip.stock.finance.sina.com.cn/fund_center/index.html#jjhqetf
+限量：单次返回所有新发基金数据
 
-描述: 基金数据中心-基金规模-开放式基金
+输入参数
 
-限量: 单次返回指定 symbol 的基金规模数据
+| 名称     | 类型  | 描述                                                                                  |
+|--------|-----|-------------------------------------------------------------------------------------|
+| symbol | str | choice of {"全部", "发行中", "将发行"} "全部": 全部新发基金；"发行中": 发行中的基金；"将发行": 将发行的基金；默认为 "全部" |
+
+输出参数
+
+| 名称    | 类型      | 描述       |
+|-------|---------|----------|
+| 基金代码  | object  | -        |
+| 基金名称  | object  | -        |
+| 投资类型  | object  | -        |
+| 募集起始日 | object  | -        |
+| 募集终止日 | object  | -        |
+| 管理人   | object  | -        |
+| 基金经理  | object  | -        |
+| 认购费率  | float64 | 注意单位：%  |
+| 最低认购  | float64 | -        |
+| 基金类型  | object  | -        |
+| 投资风格  | object  | -        |
+
+接口示例
+
+```python
+import akshare as ak
+
+fund_new_found_ths_df = ak.fund_new_found_ths(symbol="全部")
+print(fund_new_found_ths_df)
+```
+
+数据示例
+
+```
+       基金代码       基金名称 投资类型       募集起始日  ... 认购费率 最低认购   基金类型  投资风格
+0    020073          财通中证A500指数A  股票型  2026-02-13  ...  0.3  NaN  开放式基金   平衡型
+1    020074          财通中证A500指数C  股票型  2026-02-13  ...  0.0  NaN  开放式基金   平衡型
+2    022471  兴全安养稳健养老一年持有混合(FOF)  基金型  2026-02-26  ...  0.5  1.0  开放式基金  None
+3    023679       格林上证科创板综合指数增强A  股票型  2026-03-04  ...  0.3  1.0  开放式基金   成长型
+4    023680       格林上证科创板综合指数增强C  股票型  2026-03-04  ...  0.0  1.0  开放式基金   成长型
+..      ...                  ...  ...         ...  ...  ...  ...    ...   ...
+218  520790        兴业中证港股通互联网ETF  股票型  2026-03-02  ...  0.3  NaN    ETF   成长型
+219  560210           景顺长城农牧渔ETF  股票型  2026-02-24  ...  0.3  NaN    ETF   平衡型
+220  560400      华泰柏瑞中证全指证券公司ETF  股票型  2026-02-26  ...  0.3  NaN    ETF   平衡型
+221  560410          鹏华中证电池主题ETF  股票型  2026-03-19  ...  0.3  NaN    ETF   平衡型
+222  589250       浦银安盛科创板芯片设计ETF  股票型  2026-03-02  ...  0.3  NaN    ETF   平衡型
+[223 rows x 11 columns]
+```
+
+## 基金规模
+
+### 开放式基金
+
+接口：fund_scale_open_sina
+
+目标地址：https://vip.stock.finance.sina.com.cn/fund_center/index.html#jjhqetf
+
+描述：基金数据中心-基金规模-开放式基金
+
+限量：单次返回指定 symbol 的基金规模数据
 
 输入参数
 
@@ -3636,9 +3825,9 @@ print(fund_new_found_em_df)
 | 序号    | int64   | -        |
 | 基金代码  | object  | -        |
 | 基金简称  | object  | -        |
-| 单位净值  | float64 | 注意单位: 元  |
-| 总募集规模 | float64 | 注意单位: 万份 |
-| 最近总份额 | float64 | 注意单位: 份  |
+| 单位净值  | float64 | 注意单位：元  |
+| 总募集规模 | float64 | 注意单位：万份 |
+| 最近总份额 | float64 | 注意单位：份  |
 | 成立日期  | object  | -        |
 | 基金经理  | object  | -        |
 | 更新日期  | object  | -        |
@@ -3670,15 +3859,15 @@ print(fund_scale_open_sina_df)
 [3682 rows x 9 columns]
 ```
 
-#### 封闭式基金
+### 封闭式基金
 
-接口: fund_scale_close_sina
+接口：fund_scale_close_sina
 
-目标地址: https://vip.stock.finance.sina.com.cn/fund_center/index.html#jjhqetf
+目标地址：https://vip.stock.finance.sina.com.cn/fund_center/index.html#jjhqetf
 
-描述: 基金数据中心-基金规模-封闭式基金
+描述：基金数据中心-基金规模-封闭式基金
 
-限量: 单次返回所有封闭式基金的基金规模数据
+限量：单次返回所有封闭式基金的基金规模数据
 
 输入参数
 
@@ -3693,9 +3882,9 @@ print(fund_scale_open_sina_df)
 | 序号    | int64   | -        |
 | 基金代码  | object  | -        |
 | 基金简称  | object  | -        |
-| 单位净值  | float64 | 注意单位: 元  |
-| 总募集规模 | float64 | 注意单位: 万份 |
-| 最近总份额 | float64 | 注意单位: 份  |
+| 单位净值  | float64 | 注意单位：元  |
+| 总募集规模 | float64 | 注意单位：万份 |
+| 最近总份额 | float64 | 注意单位：份  |
 | 成立日期  | object  | -        |
 | 基金经理  | object  | -        |
 | 更新日期  | object  | -        |
@@ -3727,15 +3916,15 @@ print(fund_scale_close_sina_df)
 [140 rows x 9 columns]
 ```
 
-#### 分级子基金
+### 分级子基金
 
-接口: fund_scale_structured_sina
+接口：fund_scale_structured_sina
 
-目标地址: https://vip.stock.finance.sina.com.cn/fund_center/index.html#jjgmfjall
+目标地址：https://vip.stock.finance.sina.com.cn/fund_center/index.html#jjgmfjall
 
-描述: 基金数据中心-基金规模-分级子基金
+描述：基金数据中心-基金规模-分级子基金
 
-限量: 单次返回所有分级子基金的基金规模数据
+限量：单次返回所有分级子基金的基金规模数据
 
 输入参数
 
@@ -3750,9 +3939,9 @@ print(fund_scale_close_sina_df)
 | 序号    | int64   | -        |
 | 基金代码  | object  | -        |
 | 基金简称  | object  | -        |
-| 单位净值  | float64 | 注意单位: 元  |
-| 总募集规模 | float64 | 注意单位: 万份 |
-| 最近总份额 | float64 | 注意单位: 份  |
+| 单位净值  | float64 | 注意单位：元  |
+| 总募集规模 | float64 | 注意单位：万份 |
+| 最近总份额 | float64 | 注意单位：份  |
 | 成立日期  | object  | -        |
 | 基金经理  | object  | -        |
 | 更新日期  | object  | -        |
@@ -3784,15 +3973,15 @@ print(fund_scale_structured_sina_df)
 [402 rows x 9 columns]
 ```
 
-#### ETF 基金份额-上交所
+### ETF 基金份额-上交所
 
-接口: fund_etf_scale_sse
+接口：fund_etf_scale_sse
 
-目标地址: https://www.sse.com.cn/assortment/fund/etf/list/scale/
+目标地址：https://www.sse.com.cn/assortment/fund/etf/list/scale/
 
-描述: 上海证券交易所-产品-基金产品-ETF产品-ETF产品列表-基金规模
+描述：上海证券交易所-产品-基金产品-ETF产品-ETF产品列表-基金规模
 
-限量: 单次返回指定日期的 ETF 基金份额数据
+限量：单次返回指定日期的 ETF 基金份额数据
 
 输入参数
 
@@ -3838,15 +4027,15 @@ print(fund_etf_scale_sse_df)
 [593 rows x 6 columns]
 ```
 
-#### ETF 基金份额-深交所
+### ETF 基金份额-深交所
 
-接口: fund_etf_scale_szse
+接口：fund_etf_scale_szse
 
-目标地址: https://fund.szse.cn/marketdata/fundslist/index.html
+目标地址：https://fund.szse.cn/marketdata/fundslist/index.html
 
-描述: 深圳证券交易所-基金产品-基金列表-ETF基金份额
+描述：深圳证券交易所-基金产品-基金列表-ETF基金份额
 
-限量: 单次返回最近交易日的 ETF 基金份额数据
+限量：单次返回最近交易日的 ETF 基金份额数据
 
 输入参数
 
@@ -3896,17 +4085,71 @@ print(fund_etf_scale_szse_df)
 [903 rows x 10 columns]
 ```
 
-### 基金公司规模
+### 基金规模日频-深交所
 
-#### 基金规模详情
+接口：fund_scale_daily_szse
 
-接口: fund_aum_em
+目标地址：http://www.szse.cn/market/fund/volume/etf/index.html
 
-目标地址: https://fund.eastmoney.com/Company/lsgm.html
+描述：深圳证券交易所-基金产品-基金规模-日频数据
 
-描述: 天天基金网-基金数据-基金规模
+限量：单次返回指定日期区间和基金类别的基金规模数据；日期范围不能超过 6 个月，否则返回带表头的空 DataFrame
 
-限量: 单次返回所有基金规模数据
+输入参数
+
+| 名称         | 类型  | 描述                                                         |
+|------------|-----|------------------------------------------------------------|
+| start_date | str | 开始日期，格式为 "YYYYMMDD"                                       |
+| end_date   | str | 结束日期，格式为 "YYYYMMDD"                                       |
+| symbol     | str | 基金类别，choice of {"ETF", "LOF", "REITS"}; REITS 映射为 "不动产基金" |
+
+输出参数
+
+| 名称   | 类型      | 描述 |
+|------|---------|----|
+| 日期   | object  | -  |
+| 基金代码 | object  | -  |
+| 基金简称 | object  | -  |
+| 基金份额 | float64 | -  |
+
+接口示例
+
+```python
+import akshare as ak
+
+fund_scale_daily_szse_df = ak.fund_scale_daily_szse(start_date="20260401", end_date="20260402", symbol="ETF")
+print(fund_scale_daily_szse_df)
+```
+
+数据示例
+
+```
+             日期    基金代码          基金简称          基金份额
+0    2026-04-02  159001    保证金ETF博时  1.802765e+07
+1    2026-04-02  159003     招商快线ETF  1.994149e+06
+2    2026-04-02  159005    添富快钱ETF  7.813720e+05
+3    2026-04-02  159100     纳指ETF鹏华  3.865469e+08
+4    2026-04-02  159101  港股通科技ETF工银  3.902311e+09
+..          ...     ...           ...           ...
+1253 2026-04-01  159994     通信ETF银华  2.117003e+09
+1254 2026-04-01  159995     芯片ETF华夏  1.406836e+10
+1255 2026-04-01  159996     家电ETF国泰  8.325548e+08
+1256 2026-04-01  159997     电子ETF天弘  7.343066e+08
+1257 2026-04-01  159998    创业板ETF南方  2.209055e+09
+[1258 rows x 4 columns]
+```
+
+## 基金公司规模
+
+### 基金规模详情
+
+接口：fund_aum_em
+
+目标地址：https://fund.eastmoney.com/Company/lsgm.html
+
+描述：天天基金网-基金数据-基金规模
+
+限量：单次返回所有基金规模数据
 
 输入参数
 
@@ -3921,7 +4164,7 @@ print(fund_etf_scale_szse_df)
 | 序号     | int64   | -        |
 | 基金公司   | object  | -        |
 | 成立时间   | object  | -        |
-| 全部管理规模 | float64 | 注意单位: 亿元 |
+| 全部管理规模 | float64 | 注意单位：亿元 |
 | 全部基金数  | int64   | -        |
 | 全部经理数  | int64   | -        |
 | 更新日期   | object  | -        |
@@ -3953,15 +4196,15 @@ print(fund_aum_em_df)
 [205 rows x 7 columns]
 ```
 
-#### 基金规模走势
+### 基金规模走势
 
-接口: fund_aum_trend_em
+接口：fund_aum_trend_em
 
-目标地址: http://fund.eastmoney.com/Company/default.html
+目标地址：http://fund.eastmoney.com/Company/default.html
 
-描述: 天天基金网-基金数据-市场全部基金规模走势
+描述：天天基金网-基金数据-市场全部基金规模走势
 
-限量: 单次返回所有市场全部基金规模走势数据
+限量：单次返回所有市场全部基金规模走势数据
 
 输入参数
 
@@ -4012,21 +4255,21 @@ print(fund_aum_trend_em_df)
 20  2021-06-28  2.233053e+13
 ```
 
-#### 基金公司历年管理规模
+### 基金公司历年管理规模
 
-接口: fund_aum_hist_em
+接口：fund_aum_hist_em
 
-目标地址: http://fund.eastmoney.com/Company/lsgm.html
+目标地址：http://fund.eastmoney.com/Company/lsgm.html
 
-描述: 天天基金网-基金数据-基金公司历年管理规模排行列表
+描述：天天基金网-基金数据-基金公司历年管理规模排行列表
 
-限量: 单次返回所有基金公司历年管理规模排行列表数据
+限量：单次返回所有基金公司历年管理规模排行列表数据
 
 输入参数
 
 | 名称   | 类型  | 描述                      |
 |------|-----|-------------------------|
-| year | str | year="2023"; 从 2001 年开始 |
+| year | str | year="2023"；从 2001 年开始 |
 
 输出参数
 
@@ -4069,17 +4312,17 @@ print(fund_aum_hist_em_df)
 [199 rows x 9 columns]
 ```
 
-### REITs
+## REITs
 
-#### REITs-实时行情
+### REITs-实时行情
 
-接口: reits_realtime_em
+接口：reits_realtime_em
 
-目标地址: http://quote.eastmoney.com/center/gridlist.html#fund_reits_all
+目标地址：http://quote.eastmoney.com/center/gridlist.html#fund_reits_all
 
-描述: 东方财富网-行情中心-REITs-沪深 REITs-实时行情
+描述：东方财富网-行情中心-REITs-沪深 REITs-实时行情
 
-限量: 单次返回所有 REITs 的实时行情数据
+限量：单次返回所有 REITs 的实时行情数据
 
 输入参数
 
@@ -4096,7 +4339,7 @@ print(fund_aum_hist_em_df)
 | 名称  | object  | -       |
 | 最新价 | float64 | -       |
 | 涨跌额 | float64 | -       |
-| 涨跌幅 | float64 | 注意单位: % |
+| 涨跌幅 | float64 | 注意单位：% |
 | 成交量 | int64   | -       |
 | 成交额 | float64 | -       |
 | 开盘价 | float64 | -       |
@@ -4131,15 +4374,15 @@ print(reits_realtime_em_df)
 [63 rows x 12 columns]
 ```
 
-#### REITs-历史行情
+### REITs-历史行情
 
-接口: reits_hist_em
+接口：reits_hist_em
 
-目标地址: https://quote.eastmoney.com/sh508097.html
+目标地址：https://quote.eastmoney.com/sh508097.html
 
-描述: 东方财富网-行情中心-REITs-沪深 REITs-历史行情
+描述：东方财富网-行情中心-REITs-沪深 REITs-历史行情
 
-限量: 单次返回指定 symbol 的历史行情数据
+限量：单次返回指定 symbol 的历史行情数据
 
 输入参数
 
@@ -4158,8 +4401,8 @@ print(reits_realtime_em_df)
 | 最新价 | float64 | -       |
 | 成交量 | int64   | -       |
 | 成交额 | float64 | -       |
-| 振幅  | float64 | 注意单位: % |
-| 换手  | float64 | 注意单位: % |
+| 振幅  | float64 | 注意单位：% |
+| 换手  | float64 | 注意单位：% |
 
 接口示例
 
@@ -4188,23 +4431,23 @@ print(reits_hist_em_df)
 [76 rows x 9 columns]
 ```
 
-### 基金报告
+## 基金报告
 
-#### 基金重仓股
+### 基金重仓股
 
-接口: fund_report_stock_cninfo
+接口：fund_report_stock_cninfo
 
-目标地址: https://webapi.cninfo.com.cn/#/thematicStatistics
+目标地址：https://webapi.cninfo.com.cn/#/thematicStatistics
 
-描述: 巨潮资讯-数据中心-专题统计-基金报表-基金重仓股
+描述：巨潮资讯-数据中心-专题统计-基金报表-基金重仓股
 
-限量: 返回指定 date 的所有数据; date 从 2017 年开始
+限量：返回指定 date 的所有数据；date 从 2017 年开始
 
 输入参数
 
 | 名称   | 类型  | 描述                                                                                       |
 |------|-----|------------------------------------------------------------------------------------------|
-| date | str | date="20210630"; choice of {"XXXX0331", "XXXX0630", "XXXX0930", "XXXX1231"}, 其中 XXXX 为年份 |
+| date | str | date="20210630"; choice of {"XXXX0331", "XXXX0630", "XXXX0930", "XXXX1231"}，其中 XXXX 为年份 |
 
 输出参数
 
@@ -4244,21 +4487,21 @@ print(fund_report_stock_cninfo_df)
 3955  3956  839167  同享科技  2021-06-30       1   315074    667.96
 ```
 
-#### 基金行业配置
+### 基金行业配置
 
-接口: fund_report_industry_allocation_cninfo
+接口：fund_report_industry_allocation_cninfo
 
-目标地址: https://webapi.cninfo.com.cn/#/thematicStatistics
+目标地址：https://webapi.cninfo.com.cn/#/thematicStatistics
 
-描述: 巨潮资讯-数据中心-专题统计-基金报表-基金行业配置
+描述：巨潮资讯-数据中心-专题统计-基金报表-基金行业配置
 
-限量: 返回指定 date 的所有数据; date 从 2017 年开始
+限量：返回指定 date 的所有数据；date 从 2017 年开始
 
 输入参数
 
 | 名称   | 类型  | 描述                                                                                       |
 |------|-----|------------------------------------------------------------------------------------------|
-| date | str | date="20210630"; choice of {"XXXX0331", "XXXX0630", "XXXX0930", "XXXX1231"}, 其中 XXXX 为年份 |
+| date | str | date="20210630"; choice of {"XXXX0331", "XXXX0630", "XXXX0930", "XXXX1231"}，其中 XXXX 为年份 |
 
 输出参数
 
@@ -4267,9 +4510,9 @@ print(fund_report_stock_cninfo_df)
 | 行业编码    | object  | -        |
 | 证监会行业名称 | object  | -        |
 | 报告期     | object  | -        |
-| 基金覆盖家数  | int64   | 注意单位: 只  |
-| 行业规模    | float64 | 注意单位: 亿元 |
-| 占净资产比例  | float64 | 注意单位: %  |
+| 基金覆盖家数  | int64   | 注意单位：只  |
+| 行业规模    | float64 | 注意单位：亿元 |
+| 占净资产比例  | float64 | 注意单位：%  |
 
 接口示例
 
@@ -4305,15 +4548,15 @@ print(fund_report_industry_allocation_cninfo_df)
 18    S                综合  2021-06-30     278     60.31    0.03
 ```
 
-#### 基金资产配置
+### 基金资产配置
 
-接口: fund_report_asset_allocation_cninfo
+接口：fund_report_asset_allocation_cninfo
 
-目标地址: https://webapi.cninfo.com.cn/#/thematicStatistics
+目标地址：https://webapi.cninfo.com.cn/#/thematicStatistics
 
-描述: 巨潮资讯-数据中心-专题统计-基金报表-基金资产配置
+描述：巨潮资讯-数据中心-专题统计-基金报表-基金资产配置
 
-限量: 返回所有基金资产配置数据
+限量：返回所有基金资产配置数据
 
 输入参数
 
@@ -4326,11 +4569,11 @@ print(fund_report_industry_allocation_cninfo_df)
 | 名称            | 类型     | 描述       |
 |---------------|--------|----------|
 | 报告期           | object | -        |
-| 基金覆盖家数        | object | 注意单位: 只  |
-| 股票权益类占净资产比例   | object | 注意单位: %  |
-| 债券固定收益类占净资产比例 | object | 注意单位: %  |
-| 现金货币类占净资产比例   | object | 注意单位: %  |
-| 基金市场净资产规模     | object | 注意单位: 亿元 |
+| 基金覆盖家数        | object | 注意单位：只  |
+| 股票权益类占净资产比例   | object | 注意单位：%  |
+| 债券固定收益类占净资产比例 | object | 注意单位：%  |
+| 现金货币类占净资产比例   | object | 注意单位：%  |
+| 基金市场净资产规模     | object | 注意单位：亿元 |
 
 接口示例
 
@@ -4359,17 +4602,17 @@ print(fund_report_asset_allocation_cninfo_df)
 [68 rows x 6 columns]
 ```
 
-### 规模份额
+## 规模份额
 
-#### 规模变动
+### 规模变动
 
-接口: fund_scale_change_em
+接口：fund_scale_change_em
 
-目标地址: https://fund.eastmoney.com/data/gmbdlist.html
+目标地址：https://fund.eastmoney.com/data/gmbdlist.html
 
-描述: 天天基金网-基金数据-规模份额-规模变动
+描述：天天基金网-基金数据-规模份额-规模变动
 
-限量: 返回所有规模变动数据
+限量：返回所有规模变动数据
 
 输入参数
 
@@ -4384,10 +4627,10 @@ print(fund_report_asset_allocation_cninfo_df)
 | 序号    | int64   | -        |
 | 截止日期  | object  | -        |
 | 基金家数  | int64   | -        |
-| 期间申购  | float64 | 注意单位: 亿份 |
-| 期间赎回  | float64 | 注意单位: 亿份 |
-| 期末总份额 | float64 | 注意单位: 亿份 |
-| 期末净资产 | float64 | 注意单位: 亿份 |
+| 期间申购  | float64 | 注意单位：亿份 |
+| 期间赎回  | float64 | 注意单位：亿份 |
+| 期末总份额 | float64 | 注意单位：亿份 |
+| 期末净资产 | float64 | 注意单位：亿份 |
 
 接口示例
 
@@ -4416,15 +4659,15 @@ print(fund_scale_change_em_df)
 [102 rows x 7 columns]
 ```
 
-#### 持有人结构
+### 持有人结构
 
-接口: fund_hold_structure_em
+接口：fund_hold_structure_em
 
-目标地址: https://fund.eastmoney.com/data/cyrjglist.html
+目标地址：https://fund.eastmoney.com/data/cyrjglist.html
 
-描述: 天天基金网-基金数据-规模份额-持有人结构
+描述：天天基金网-基金数据-规模份额-持有人结构
 
-限量: 返回所有持有人结构数据
+限量：返回所有持有人结构数据
 
 输入参数
 
@@ -4439,10 +4682,10 @@ print(fund_scale_change_em_df)
 | 序号     | int64   | -        |
 | 截止日期   | object  | -        |
 | 基金家数   | int64   | -        |
-| 机构持有比列 | float64 | 注意单位: %  |
-| 个人持有比列 | float64 | 注意单位: %  |
-| 内部持有比列 | float64 | 注意单位: %  |
-| 总份额    | float64 | 注意单位: 亿份 |
+| 机构持有比列 | float64 | 注意单位：%  |
+| 个人持有比列 | float64 | 注意单位：%  |
+| 内部持有比列 | float64 | 注意单位：%  |
+| 总份额    | float64 | 注意单位：亿份 |
 
 接口示例
 
@@ -4498,17 +4741,17 @@ print(fund_hold_structure_em_df)
 38  39  2004-06-30    127   66.97   79.44    0.00    1759.85
 ```
 
-### 基金仓位
+## 基金仓位
 
-#### 股票型基金仓位
+### 股票型基金仓位
 
-接口: fund_stock_position_lg
+接口：fund_stock_position_lg
 
-目标地址: https://legulegu.com/stockdata/fund-position/pos-stock
+目标地址：https://legulegu.com/stockdata/fund-position/pos-stock
 
-描述: 乐咕乐股-基金仓位-股票型基金仓位
+描述：乐咕乐股-基金仓位-股票型基金仓位
 
-限量: 返回所有历史数据
+限量：返回所有历史数据
 
 输入参数
 
@@ -4521,8 +4764,8 @@ print(fund_hold_structure_em_df)
 | 名称       | 类型      | 描述               |
 |----------|---------|------------------|
 | date     | object  | -                |
-| close    | float64 | 注意单位: 沪深 300 收盘价 |
-| position | float64 | 注意单位: 持仓比例       |
+| close    | float64 | 注意单位：沪深 300 收盘价 |
+| position | float64 | 注意单位：持仓比例       |
 
 接口示例
 
@@ -4550,15 +4793,15 @@ print(fund_stock_position_lg_df)
 260  2022-12-23  3828.22     89.67
 ```
 
-#### 平衡混合型基金仓位
+### 平衡混合型基金仓位
 
-接口: fund_balance_position_lg
+接口：fund_balance_position_lg
 
-目标地址: https://legulegu.com/stockdata/fund-position/pos-pingheng
+目标地址：https://legulegu.com/stockdata/fund-position/pos-pingheng
 
-描述: 乐咕乐股-基金仓位-平衡混合型基金仓位
+描述：乐咕乐股-基金仓位-平衡混合型基金仓位
 
-限量: 返回所有历史数据
+限量：返回所有历史数据
 
 输入参数
 
@@ -4571,8 +4814,8 @@ print(fund_stock_position_lg_df)
 | 名称       | 类型      | 描述               |
 |----------|---------|------------------|
 | date     | object  | -                |
-| close    | float64 | 注意单位: 沪深 300 收盘价 |
-| position | float64 | 注意单位: 持仓比例       |
+| close    | float64 | 注意单位：沪深 300 收盘价 |
+| position | float64 | 注意单位：持仓比例       |
 
 接口示例
 
@@ -4600,15 +4843,15 @@ print(fund_balance_position_lg_df)
 260  2022-12-23  3828.22     68.28
 ```
 
-#### 灵活配置型基金仓位
+### 灵活配置型基金仓位
 
-接口: fund_linghuo_position_lg
+接口：fund_linghuo_position_lg
 
-目标地址: https://legulegu.com/stockdata/fund-position/pos-linghuo
+目标地址：https://legulegu.com/stockdata/fund-position/pos-linghuo
 
-描述: 乐咕乐股-基金仓位-灵活配置型基金仓位
+描述：乐咕乐股-基金仓位-灵活配置型基金仓位
 
-限量: 返回所有历史数据
+限量：返回所有历史数据
 
 输入参数
 
@@ -4621,8 +4864,8 @@ print(fund_balance_position_lg_df)
 | 名称       | 类型      | 描述               |
 |----------|---------|------------------|
 | date     | object  | -                |
-| close    | float64 | 注意单位: 沪深 300 收盘价 |
-| position | float64 | 注意单位: 持仓比例       |
+| close    | float64 | 注意单位：沪深 300 收盘价 |
+| position | float64 | 注意单位：持仓比例       |
 
 接口示例
 
@@ -4650,17 +4893,17 @@ print(fund_linghuo_position_lg_df)
 260  2022-12-23  3828.22     72.55
 ```
 
-### 基金公告
+## 基金公告
 
-#### 分红配送
+### 分红配送
 
-接口: fund_announcement_dividend_em
+接口：fund_announcement_dividend_em
 
-目标地址: https://fundf10.eastmoney.com/jjgg_000001_2.html
+目标地址：https://fundf10.eastmoney.com/jjgg_000001_2.html
 
-描述: 东方财富网站-天天基金网-基金档案-基金公告-分红配送
+描述：东方财富网站-天天基金网-基金档案-基金公告-分红配送
 
-限量: 返回所有历史数据
+限量：返回所有历史数据
 
 输入参数
 
@@ -4676,7 +4919,7 @@ print(fund_linghuo_position_lg_df)
 | 公告标题 | object | -                      |
 | 基金名称 | object | 基金名称                   |
 | 公告日期 | object | 公告的发布日期                |
-| 报告ID | object | 获取报告详情的依据; 拼接后可以获取公告地址 |
+| 报告ID | object | 获取报告详情的依据；拼接后可以获取公告地址 |
 
 接口示例
 
@@ -4707,15 +4950,15 @@ print(fund_announcement_dividend_em_df)
 13  000001                华夏成长证券投资基金第二十四次分红公告  华夏成长混合  2023-01-10  AN202301101581832718
 ```
 
-#### 定期报告
+### 定期报告
 
-接口: fund_announcement_report_em
+接口：fund_announcement_report_em
 
-目标地址: https://fundf10.eastmoney.com/jjgg_000001_3.html
+目标地址：https://fundf10.eastmoney.com/jjgg_000001_3.html
 
-描述: 东方财富网站-天天基金网-基金档案-基金公告-定期报告
+描述：东方财富网站-天天基金网-基金档案-基金公告-定期报告
 
-限量: 返回所有历史数据
+限量：返回所有历史数据
 
 输入参数
 
@@ -4731,7 +4974,7 @@ print(fund_announcement_dividend_em_df)
 | 公告标题 | object | -                      |
 | 基金名称 | object | 基金名称                   |
 | 公告日期 | object | 公告的发布日期                |
-| 报告ID | object | 获取报告详情的依据; 拼接后可以获取公告地址 |
+| 报告ID | object | 获取报告详情的依据；拼接后可以获取公告地址 |
 
 接口示例
 
@@ -4760,15 +5003,15 @@ print(fund_announcement_report_em_df)
 [100 rows x 5 columns]
 ```
 
-#### 人事公告
+### 人事公告
 
-接口: fund_announcement_personnel_em
+接口：fund_announcement_personnel_em
 
-目标地址: http://fundf10.eastmoney.com/jjgg_000001_4.html
+目标地址：http://fundf10.eastmoney.com/jjgg_000001_4.html
 
-描述: 东方财富网站-天天基金网-基金档案-基金公告-人事调整
+描述：东方财富网站-天天基金网-基金档案-基金公告-人事调整
 
-限量: 返回所有历史数据
+限量：返回所有历史数据
 
 输入参数
 
@@ -4784,7 +5027,7 @@ print(fund_announcement_report_em_df)
 | 公告标题 | object | -                      |
 | 基金名称 | object | 基金名称                   |
 | 公告日期 | object | 公告的发布日期                |
-| 报告ID | object | 获取报告详情的依据; 拼接后可以获取公告地址 |
+| 报告ID | object | 获取报告详情的依据；拼接后可以获取公告地址 |
 
 接口示例
 

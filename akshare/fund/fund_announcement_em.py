@@ -16,7 +16,7 @@ def fund_announcement_dividend_em(symbol: str = "000001") -> pd.DataFrame:
     """
     东方财富网站-天天基金网-基金档案-基金公告-分红配送
     https://fundf10.eastmoney.com/jjgg_000001_2.html
-    :param symbol: 基金代码; 可以通过调用 ak.fund_name_em() 接口获取
+    :param symbol: 基金代码；可以通过调用 ak.fund_name_em() 接口获取
     :type symbol: str
     :return: 分红配送-公告列表
     :rtype: pandas.DataFrame
@@ -24,7 +24,7 @@ def fund_announcement_dividend_em(symbol: str = "000001") -> pd.DataFrame:
     url = "http://api.fund.eastmoney.com/f10/JJGG"
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) "
-                      "Chrome/80.0.3987.149 Safari/537.36",
+        "Chrome/80.0.3987.149 Safari/537.36",
         "Referer": f"http://fundf10.eastmoney.com/jjgg_{symbol}_2.html",
     }
     params = {
@@ -57,7 +57,7 @@ def fund_announcement_report_em(symbol: str = "000001") -> pd.DataFrame:
     """
     东方财富网站-天天基金网-基金档案-基金公告-定期报告
     https://fundf10.eastmoney.com/jjgg_000001_3.html
-    :param symbol: 基金代码; 可以通过调用 ak.fund_name_em() 接口获取
+    :param symbol: 基金代码；可以通过调用 ak.fund_name_em() 接口获取
     :type symbol: str
     :return: 定期报告-公告列表
     :rtype: pandas.DataFrame
@@ -65,7 +65,7 @@ def fund_announcement_report_em(symbol: str = "000001") -> pd.DataFrame:
     url = "http://api.fund.eastmoney.com/f10/JJGG"
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) "
-                      "Chrome/80.0.3987.149 Safari/537.36",
+        "Chrome/80.0.3987.149 Safari/537.36",
         "Referer": f"http://fundf10.eastmoney.com/jjgg_{symbol}_3.html",
     }
     params = {
@@ -98,7 +98,7 @@ def fund_announcement_personnel_em(symbol: str = "000001") -> pd.DataFrame:
     """
     东方财富网站-天天基金网-基金档案-基金公告-人事调整
     https://fundf10.eastmoney.com/jjgg_000001_4.html
-    :param symbol: 基金代码; 可以通过调用 ak.fund_name_em() 接口获取
+    :param symbol: 基金代码；可以通过调用 ak.fund_name_em() 接口获取
     :type symbol: str
     :return: 人事调整-公告列表
     :rtype: pandas.DataFrame

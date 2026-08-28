@@ -31,10 +31,11 @@ futures_inventory_em_symbol_dict = {
     "cu": "CU",  # 沪铜
     "CY": "CY",  # 棉纱
     "eb": "EB",  # 苯乙烯
-    "ec": "ec",  # 集运欧线/集运指数(欧线)
+    "ec": "ec",  # 集运欧线/集运指数（欧线）
     "eg": "EG",  # 乙二醇
     "fb": None,  # 纤维板 (new中没有对应)
     "FG": "FG",  # 玻璃
+    "PL": "PL",  # 丙烯
     "fu": "FU",  # 燃料油/燃油
     "hc": "HC",  # 热卷
     "i": "I",  # 铁矿石
@@ -173,7 +174,7 @@ QHKC_FUND_BIG_CHANGE_URL = "https://qhkch.com/ajax/fund_big_chge.php"
 QHKC_TOOL_FOREIGN_URL = "https://qhkch.com/ajax/toolbox_foreign.php"
 QHKC_TOOL_GDP_URL = "https://qhkch.com/dist/views/toolbox/gdp.html?v=1.10.7.1"
 
-# 键值对: 键为交易所代码, 值为具体合约代码
+# 键值对：键为交易所代码，值为具体合约代码
 market_exchange_symbols = {
     "cffex": ["IF", "IC", "IM", "IH", "T", "TF", "TS", "TL"],
     "dce": [
@@ -238,6 +239,7 @@ market_exchange_symbols = {
         "PX",  # 对二甲苯
         "SH",  # 烧碱
         "PR",  # 瓶片
+        "PL",  # 丙烯
     ],
     "shfe": [
         "CU",
@@ -264,6 +266,7 @@ market_exchange_symbols = {
         "BR",
         "EC",  # 集运指数
         "AD",  # 铸造铝合金期货
+        "OP",  # 胶版印刷纸期货
     ],
     "gfex": ["SI", "LC", "PS"],
 }
@@ -308,7 +311,9 @@ SYS_SPOT_PRICE_URL = "http://www.100ppi.com/sf/day-{}.html"
 SYS_SPOT_PRICE_LATEST_URL = "http://www.100ppi.com/sf/"
 
 SHFE_VOL_RANK_URL = "https://tsite.shfe.com.cn/data/dailydata/kx/pm%s.dat"
-SHFE_VOL_RANK_URL_20250701 = "https://www.shfe.com.cn/data/tradedata/future/dailydata/pm%s.dat"
+SHFE_VOL_RANK_URL_20250701 = (
+    "https://www.shfe.com.cn/data/tradedata/future/dailydata/pm%s.dat"
+)
 CFFEX_VOL_RANK_URL = "http://www.cffex.com.cn/sj/ccpm/%s/%s/%s_1.csv"
 DCE_VOL_RANK_URL_1 = (
     "http://portal.dce.com.cn/publicweb/quotesdata/exportMemberDealPosiQuotesData.html?"
@@ -330,7 +335,9 @@ DCE_RECEIPT_URL = "http://portal.dce.com.cn/publicweb/quotesdata/wbillWeeklyQuot
 
 SHFE_RECEIPT_URL_1 = "http://tsite.shfe.com.cn/data/dailydata/%sdailystock.html"
 SHFE_RECEIPT_URL_2 = "http://tsite.shfe.com.cn/data/dailydata/%sdailystock.dat"
-SHFE_RECEIPT_URL_20250701 = "https://www.shfe.com.cn/data/tradedata/future/dailydata/%sdailystock.dat"
+SHFE_RECEIPT_URL_20250701 = (
+    "https://www.shfe.com.cn/data/tradedata/future/dailydata/%sdailystock.dat"
+)
 CZCE_RECEIPT_URL_1 = "http://www.czce.com.cn/cn/exchange/jyxx/sheet/sheet%s.html"
 CZCE_RECEIPT_URL_2 = "http://www.czce.com.cn/cn/exchange/%s/datawhsheet/%s.htm"
 CZCE_RECEIPT_URL_3 = (
@@ -339,7 +346,9 @@ CZCE_RECEIPT_URL_3 = (
 
 CFFEX_DAILY_URL = "http://www.cffex.com.cn/fzjy/mrhq/{}/{}/{}_1.csv"
 SHFE_DAILY_URL = "http://tsite.shfe.com.cn/data/dailydata/kx/kx%s.dat"
-SHFE_DAILY_URL_20250630 = "https://www.shfe.com.cn/data/tradedata/future/dailydata/kx%s.dat"
+SHFE_DAILY_URL_20250630 = (
+    "https://www.shfe.com.cn/data/tradedata/future/dailydata/kx%s.dat"
+)
 SHFE_V_WAP_URL = "http://tsite.shfe.com.cn/data/dailydata/ck/%sdailyTimePrice.dat"
 DCE_DAILY_URL = "http://www.dce.com.cn//publicweb/quotesdata/dayQuotesCh.html"
 CZCE_DAILY_URL_1 = "http://www.czce.com.cn/cn/exchange/jyxx/hq/hq%s.html"
@@ -533,7 +542,7 @@ def convert_date(date):
 
 def get_json_path(name, module_file):
     """
-    获取 JSON 配置文件的路径(从模块所在目录查找)
+    获取 JSON 配置文件的路径（从模块所在目录查找）
     :param name: 文件名
     :param module_file: filename
     :return: str json_file_path
@@ -545,7 +554,7 @@ def get_json_path(name, module_file):
 
 def get_pk_path(name, module_file):
     """
-    获取 pickle 配置文件的路径(从模块所在目录查找)
+    获取 pickle 配置文件的路径（从模块所在目录查找）
     :param name: 文件名
     :param module_file: filename
     :return: str json_file_path
@@ -557,7 +566,7 @@ def get_pk_path(name, module_file):
 
 def get_pk_data(file_name):
     """
-    获取交易日历至 2019 年结束, 这里的交易日历需要按年更新
+    获取交易日历至 2019 年结束，这里的交易日历需要按年更新
     :return: json
     """
     setting_file_name = file_name
@@ -567,7 +576,7 @@ def get_pk_data(file_name):
 
 def get_calendar():
     """
-    获取交易日历, 这里的交易日历需要按年更新, 主要是从新浪获取的
+    获取交易日历，这里的交易日历需要按年更新，主要是从新浪获取的
     :return: 交易日历
     :rtype: json
     """
@@ -588,7 +597,7 @@ def last_trading_day(day):
 
     if isinstance(day, str):
         if day not in calendar:
-            print("Today is not trading day：" + day)
+            print("Today is not trading day: " + day)
             return False
         pos = calendar.index(day)
         last_day = calendar[pos - 1]
@@ -597,7 +606,7 @@ def last_trading_day(day):
     elif isinstance(day, datetime.date):
         d_str = day.strftime("%Y%m%d")
         if d_str not in calendar:
-            print("Today is not working day：" + d_str)
+            print("Today is not working day: " + d_str)
             return False
         pos = calendar.index(d_str)
         last_day = calendar[pos - 1]

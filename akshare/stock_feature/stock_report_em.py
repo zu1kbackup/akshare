@@ -21,7 +21,7 @@ def stock_zcfz_em(date: str = "20240331") -> pd.DataFrame:
     """
     东方财富-数据中心-年报季报-业绩快报-资产负债表
     https://data.eastmoney.com/bbsj/202003/zcfz.html
-    :param date: choice of {"20200331", "20200630", "20200930", "20201231", "..."}; 从 20100331 开始
+    :param date: choice of {"20200331", "20200630", "20200930", "20201231", "..."}；从 20100331 开始
     :type date: str
     :return: 资产负债表
     :rtype: pandas.DataFrame
@@ -38,7 +38,7 @@ def stock_zcfz_em(date: str = "20240331") -> pd.DataFrame:
         "reportName": "RPT_DMSK_FN_BALANCE",
         "columns": "ALL",
         "filter": f"""(SECURITY_TYPE_CODE in ("058001001","058001008"))(TRADE_MARKET_CODE!="069001017")
-        (REPORT_DATE='{'-'.join([date[:4], date[4:6], date[6:]])}')""",
+        (REPORT_DATE='{"-".join([date[:4], date[4:6], date[6:]])}')""",
     }
     r = requests.get(url, params=params)
     data_json = r.json()
@@ -162,7 +162,7 @@ def stock_zcfz_bj_em(date: str = "20240331") -> pd.DataFrame:
     """
     东方财富-数据中心-年报季报-业绩快报-资产负债表
     https://data.eastmoney.com/bbsj/202003/zcfz.html
-    :param date: choice of {"20200331", "20200630", "20200930", "20201231", "..."}; 从 20100331 开始
+    :param date: choice of {"20200331", "20200630", "20200930", "20201231", "..."}；从 20100331 开始
     :type date: str
     :return: 资产负债表
     :rtype: pandas.DataFrame
@@ -179,7 +179,7 @@ def stock_zcfz_bj_em(date: str = "20240331") -> pd.DataFrame:
         "reportName": "RPT_DMSK_FN_BALANCE",
         "columns": "ALL",
         "filter": f"""(TRADE_MARKET_CODE="069001017")
-        (REPORT_DATE='{'-'.join([date[:4], date[4:6], date[6:]])}')""",
+        (REPORT_DATE='{"-".join([date[:4], date[4:6], date[6:]])}')""",
     }
     r = requests.get(url, params=params)
     data_json = r.json()
@@ -303,7 +303,7 @@ def stock_lrb_em(date: str = "20240331") -> pd.DataFrame:
     """
     东方财富-数据中心-年报季报-业绩快报-利润表
     https://data.eastmoney.com/bbsj/202003/lrb.html
-    :param date: choice of {"20200331", "20200630", "20200930", "20201231", "..."}; 从 20100331 开始
+    :param date: choice of {"20200331", "20200630", "20200930", "20201231", "..."}；从 20100331 开始
     :type date: str
     :return: 利润表
     :rtype: pandas.DataFrame
@@ -320,7 +320,7 @@ def stock_lrb_em(date: str = "20240331") -> pd.DataFrame:
         "reportName": "RPT_DMSK_FN_INCOME",
         "columns": "ALL",
         "filter": f"""(SECURITY_TYPE_CODE in ("058001001","058001008"))(TRADE_MARKET_CODE!="069001017")
-        (REPORT_DATE='{'-'.join([date[:4], date[4:6], date[6:]])}')""",
+        (REPORT_DATE='{"-".join([date[:4], date[4:6], date[6:]])}')""",
     }
     r = requests.get(url, params=params)
     data_json = r.json()
@@ -439,7 +439,7 @@ def stock_xjll_em(date: str = "20240331") -> pd.DataFrame:
     """
     东方财富-数据中心-年报季报-业绩快报-现金流量表
     https://data.eastmoney.com/bbsj/202003/xjll.html
-    :param date: choice of {"20200331", "20200630", "20200930", "20201231", "..."}; 从 20100331 开始
+    :param date: choice of {"20200331", "20200630", "20200930", "20201231", "..."}；从 20100331 开始
     :type date: str
     :return: 现金流量表
     :rtype: pandas.DataFrame
@@ -456,7 +456,7 @@ def stock_xjll_em(date: str = "20240331") -> pd.DataFrame:
         "reportName": "RPT_DMSK_FN_CASHFLOW",
         "columns": "ALL",
         "filter": f"""(SECURITY_TYPE_CODE in ("058001001","058001008"))(TRADE_MARKET_CODE!="069001017")
-        (REPORT_DATE='{'-'.join([date[:4], date[4:6], date[6:]])}')""",
+        (REPORT_DATE='{"-".join([date[:4], date[4:6], date[6:]])}')""",
     }
     r = requests.get(url, params=params)
     data_json = r.json()

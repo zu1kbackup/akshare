@@ -9,11 +9,14 @@ https://www.sse.com.cn/market/stockdata/statistic/
 """
 
 import warnings
+from ast import literal_eval
 from io import BytesIO, StringIO
 
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup
+
+from akshare.exceptions import InvalidParameterError
 
 
 def stock_szse_summary(date: str = "20240830") -> pd.DataFrame:
@@ -90,13 +93,15 @@ def stock_szse_area_summary(date: str = "202203") -> pd.DataFrame:
     temp_df["债券交易额"] = temp_df["债券交易额"].str.replace(",", "")
     temp_df["债券交易额"] = pd.to_numeric(temp_df["债券交易额"], errors="coerce")
     if "优先股交易额" in temp_df.columns:
-        temp_df['优先股交易额'] = temp_df['优先股交易额'].astype('str')  # 2025年2月为float
+        temp_df["优先股交易额"] = temp_df["优先股交易额"].astype(
+            "str"
+        )  # 2025年2月为float
         temp_df["优先股交易额"] = temp_df["优先股交易额"].str.replace(",", "")
         temp_df["优先股交易额"] = pd.to_numeric(
             temp_df["优先股交易额"], errors="coerce"
         )
     if "期权交易额" in temp_df.columns:
-        temp_df['期权交易额'] = temp_df['期权交易额'].astype('str')
+        temp_df["期权交易额"] = temp_df["期权交易额"].astype("str")
         temp_df["期权交易额"] = temp_df["期权交易额"].str.replace(",", "")
         temp_df["期权交易额"] = pd.to_numeric(temp_df["期权交易额"], errors="coerce")
     return temp_df
@@ -123,8 +128,8 @@ def stock_szse_sector_summary(
         "script"
     )
     tags_dict = [
-        eval(
-            item.string[item.string.find("{"): item.string.find("}") + 1]
+        literal_eval(
+            item.string[item.string.find("{") : item.string.find("}") + 1]
             .replace("\n", "")
             .replace(" ", "")
             .replace("value", "'value'")
@@ -139,6 +144,12 @@ def stock_szse_sector_summary(
         )
     )
     date_format = "-".join([date[:4], date[4:]])
+    if date_format not in date_url_dict:
+        latest_date = next(iter(date_url_dict))
+        raise InvalidParameterError(
+            f"深圳证券交易所统计月报尚未提供 {date_format} 的股票行业成交数据; "
+            f"当前最新可用月份为 {latest_date}"
+        )
     url = f"https://www.szse.cn/market/periodical/month/{date_url_dict[date_format]}"
     r = requests.get(url)
     r.encoding = "utf8"
@@ -209,7 +220,7 @@ def stock_sse_summary() -> pd.DataFrame:
     headers = {
         "Referer": "http://www.sse.com.cn/",
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) "
-                      "Chrome/89.0.4389.90 Safari/537.36",
+        "Chrome/89.0.4389.90 Safari/537.36",
     }
     r = requests.get(url, params=params, headers=headers)
     data_json = r.json()
@@ -256,7 +267,7 @@ def stock_sse_deal_daily(date: str = "20241216") -> pd.DataFrame:
     headers = {
         "Referer": "https://www.sse.com.cn/",
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) "
-                      "Chrome/89.0.4389.90 Safari/537.36",
+        "Chrome/89.0.4389.90 Safari/537.36",
     }
     r = requests.get(url, params=params, headers=headers)
     data_json = r.json()

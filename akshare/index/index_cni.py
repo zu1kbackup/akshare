@@ -29,33 +29,20 @@ def index_all_cni() -> pd.DataFrame:
     r = requests.get(url, params=params)
     data_json = r.json()
     temp_df = pd.DataFrame(data_json["data"]["rows"])
-    temp_df.columns = [
-        "_",
-        "_",
-        "指数代码",
-        "_",
-        "_",
-        "_",
-        "_",
-        "_",
-        "指数简称",
-        "_",
-        "_",
-        "_",
-        "样本数",
-        "收盘点位",
-        "涨跌幅",
-        "_",
-        "PE滚动",
-        "_",
-        "成交量",
-        "成交额",
-        "总市值",
-        "自由流通市值",
-        "_",
-        "_",
-        "_",
-    ]
+    temp_df = temp_df.rename(
+        columns={
+            "indexcode": "指数代码",
+            "indexname": "指数简称",
+            "samplesize": "样本数",
+            "closeingPoint": "收盘点位",
+            "percent": "涨跌幅",
+            "peDynamic": "PE滚动",
+            "volume": "成交量",
+            "amount": "成交额",
+            "totalMarketValue": "总市值",
+            "freeMarketValue": "自由流通市值",
+        }
+    )
     temp_df = temp_df[
         [
             "指数代码",
@@ -154,6 +141,7 @@ def index_detail_cni(symbol: str = "399001") -> pd.DataFrame:
     :rtype: pandas.DataFrame
     """
     import warnings
+
     warnings.simplefilter(action="ignore", category=UserWarning)
     url = "https://www.cnindex.com.cn/sample-detail/download-history"
     params = {"indexcode": symbol}
@@ -177,7 +165,7 @@ def index_detail_hist_cni(symbol: str = "399001") -> pd.DataFrame:
     """
     国证指数-样本详情-历史样本
     https://www.cnindex.com.cn/module/index-detail.html?act_menu=1&indexCode=399001
-    :param symbol: 指数代码; "399001"
+    :param symbol: 指数代码；"399001"
     :type symbol: str
     :return: 历史样本
     :rtype: pandas.DataFrame
@@ -229,7 +217,7 @@ if __name__ == "__main__":
     print(index_all_cni_df)
 
     index_hist_cni_df = index_hist_cni(
-        symbol="399005", start_date="20230114", end_date="20240114"
+        symbol="399005", start_date="20230114", end_date="20260328"
     )
     print(index_hist_cni_df)
 

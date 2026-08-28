@@ -4,15 +4,15 @@
 Date: 2025/3/4 23:00
 Desc: 东方财富网-数据中心-沪深港通持股
 https://data.eastmoney.com/hsgtcg/
-沪深港通详情: https://finance.eastmoney.com/news/1622,20161118685370149.html
+沪深港通详情：https://finance.eastmoney.com/news/1622,20161118685370149.html
 """
 
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup
 
-from akshare.utils.tqdm import get_tqdm
 from akshare.utils.func import fetch_paginated_data
+from akshare.utils.tqdm import get_tqdm
 
 
 def stock_hsgt_fund_flow_summary_em() -> pd.DataFrame:
@@ -270,11 +270,11 @@ def stock_hsgt_hold_stock_em(
         "_",
         "_",
         "_",
-        f'{indicator.split("排")[0]}增持估计-市值',
-        f'{indicator.split("排")[0]}增持估计-股数',
-        f'{indicator.split("排")[0]}增持估计-市值增幅',
-        f'{indicator.split("排")[0]}增持估计-占流通股比',
-        f'{indicator.split("排")[0]}增持估计-占总股本比',
+        f"{indicator.split('排')[0]}增持估计-市值",
+        f"{indicator.split('排')[0]}增持估计-股数",
+        f"{indicator.split('排')[0]}增持估计-市值增幅",
+        f"{indicator.split('排')[0]}增持估计-占流通股比",
+        f"{indicator.split('排')[0]}增持估计-占总股本比",
         "_",
         "_",
         "_",
@@ -295,11 +295,11 @@ def stock_hsgt_hold_stock_em(
             "今日持股-市值",
             "今日持股-占流通股比",
             "今日持股-占总股本比",
-            f'{indicator.split("排")[0]}增持估计-股数',
-            f'{indicator.split("排")[0]}增持估计-市值',
-            f'{indicator.split("排")[0]}增持估计-市值增幅',
-            f'{indicator.split("排")[0]}增持估计-占流通股比',
-            f'{indicator.split("排")[0]}增持估计-占总股本比',
+            f"{indicator.split('排')[0]}增持估计-股数",
+            f"{indicator.split('排')[0]}增持估计-市值",
+            f"{indicator.split('排')[0]}增持估计-市值增幅",
+            f"{indicator.split('排')[0]}增持估计-占流通股比",
+            f"{indicator.split('排')[0]}增持估计-占总股本比",
             "所属板块",
             "日期",
         ]
@@ -314,20 +314,20 @@ def stock_hsgt_hold_stock_em(
     big_df["今日持股-占总股本比"] = pd.to_numeric(
         big_df["今日持股-占总股本比"], errors="coerce"
     )
-    big_df[f'{indicator.split("排")[0]}增持估计-股数'] = pd.to_numeric(
-        big_df[f'{indicator.split("排")[0]}增持估计-股数'], errors="coerce"
+    big_df[f"{indicator.split('排')[0]}增持估计-股数"] = pd.to_numeric(
+        big_df[f"{indicator.split('排')[0]}增持估计-股数"], errors="coerce"
     )
-    big_df[f'{indicator.split("排")[0]}增持估计-市值'] = pd.to_numeric(
-        big_df[f'{indicator.split("排")[0]}增持估计-市值'], errors="coerce"
+    big_df[f"{indicator.split('排')[0]}增持估计-市值"] = pd.to_numeric(
+        big_df[f"{indicator.split('排')[0]}增持估计-市值"], errors="coerce"
     )
-    big_df[f'{indicator.split("排")[0]}增持估计-市值增幅'] = pd.to_numeric(
-        big_df[f'{indicator.split("排")[0]}增持估计-市值增幅'], errors="coerce"
+    big_df[f"{indicator.split('排')[0]}增持估计-市值增幅"] = pd.to_numeric(
+        big_df[f"{indicator.split('排')[0]}增持估计-市值增幅"], errors="coerce"
     )
-    big_df[f'{indicator.split("排")[0]}增持估计-占流通股比'] = pd.to_numeric(
-        big_df[f'{indicator.split("排")[0]}增持估计-占流通股比'], errors="coerce"
+    big_df[f"{indicator.split('排')[0]}增持估计-占流通股比"] = pd.to_numeric(
+        big_df[f"{indicator.split('排')[0]}增持估计-占流通股比"], errors="coerce"
     )
-    big_df[f'{indicator.split("排")[0]}增持估计-占总股本比'] = pd.to_numeric(
-        big_df[f'{indicator.split("排")[0]}增持估计-占总股本比'], errors="coerce"
+    big_df[f"{indicator.split('排')[0]}增持估计-占总股本比"] = pd.to_numeric(
+        big_df[f"{indicator.split('排')[0]}增持估计-占总股本比"], errors="coerce"
     )
     big_df["日期"] = pd.to_datetime(big_df["日期"], errors="coerce").dt.date
     return big_df
@@ -341,13 +341,13 @@ def stock_hsgt_stock_statistics_em(
     """
     东方财富网-数据中心-沪深港通-沪深港通持股-每日个股统计
     https://data.eastmoney.com/hsgtcg/StockStatistics.aspx
-    market=001, 沪股通持股
-    market=003, 深股通持股
+    market=001，沪股通持股
+    market=003，深股通持股
     :param symbol: choice of {"北向持股", "南向持股"}
     :type symbol: str
-    :param start_date: 指定数据获取开始的时间, e.g., "20200713"
+    :param start_date: 指定数据获取开始的时间，e.g., "20200713"
     :type start_date: str
-    :param end_date: 指定数据获取结束的时间, e.g., "20200715"
+    :param end_date: 指定数据获取结束的时间，e.g., "20200715"
     :type end_date:str
     :return: 指定市场和指定时间段的每日个股统计数据
     :rtype: pandas.DataFrame
@@ -785,9 +785,9 @@ def stock_hsgt_institution_statistics_em(
     https://data.eastmoney.com/hsgtcg/InstitutionStatistics.aspx
     :param market: choice of {"北向持股", "南向持股", "沪股通持股", "深股通持股"}
     :type market: str
-    :param start_date: 指定数据获取开始的时间, e.g., "20200713"
+    :param start_date: 指定数据获取开始的时间，e.g., "20200713"
     :type start_date: str
-    :param end_date: 指定数据获取结束的时间, e.g., "20200715"
+    :param end_date: 指定数据获取结束的时间，e.g., "20200715"
     :type end_date:str
     :return: 指定市场和指定时间段的每日个股统计数据
     :rtype: pandas.DataFrame
@@ -1500,12 +1500,8 @@ def __stock_hsgt_individual_zh_a_em(symbol: str = "002008") -> pd.DataFrame:
     temp_df["持股数量占A股百分比"] = pd.to_numeric(
         temp_df["持股数量占A股百分比"], errors="coerce"
     )
-    temp_df["今日增持股数"] = pd.to_numeric(
-        temp_df["今日增持股数"], errors="coerce"
-    )
-    temp_df["今日增持资金"] = pd.to_numeric(
-        temp_df["今日增持资金"], errors="coerce"
-    )
+    temp_df["今日增持股数"] = pd.to_numeric(temp_df["今日增持股数"], errors="coerce")
+    temp_df["今日增持资金"] = pd.to_numeric(temp_df["今日增持资金"], errors="coerce")
     temp_df["今日持股市值变化"] = pd.to_numeric(
         temp_df["今日持股市值变化"], errors="coerce"
     )
@@ -1556,8 +1552,8 @@ def stock_hsgt_individual_detail_em(
         "source": "WEB",
         "client": "WEB",
         "filter": f"""(SECURITY_CODE="{symbol}")(MARKET_CODE="003")(HOLD_DATE
-        >='{'-'.join([start_date[:4], start_date[4:6], start_date[6:]])}')(HOLD_DATE
-        <='{'-'.join([end_date[:4], end_date[4:6], end_date[6:]])}')""",
+        >='{"-".join([start_date[:4], start_date[4:6], start_date[6:]])}')(HOLD_DATE
+        <='{"-".join([end_date[:4], end_date[4:6], end_date[6:]])}')""",
     }
     r = requests.get(url, params=params)
     data_json = r.json()
@@ -1567,8 +1563,8 @@ def stock_hsgt_individual_detail_em(
         params.update(
             {
                 "filter": f"""(SECURITY_CODE="{symbol}")(MARKET_CODE="001")(HOLD_DATE
-                >='{'-'.join([start_date[:4], start_date[4:6], start_date[6:]])}')(HOLD_DATE
-                <='{'-'.join([end_date[:4], end_date[4:6], end_date[6:]])}')""",
+                >='{"-".join([start_date[:4], start_date[4:6], start_date[6:]])}')(HOLD_DATE
+                <='{"-".join([end_date[:4], end_date[4:6], end_date[6:]])}')""",
             }
         )
         r = requests.get(url, params=params)

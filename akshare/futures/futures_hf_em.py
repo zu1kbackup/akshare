@@ -19,7 +19,7 @@ def __futures_global_hist_market_code(symbol: str = "HG00Y") -> Optional[int]:
     """
     东方财富网-行情中心-期货市场-国际期货-品种市场对照表
     https://quote.eastmoney.com/center/gridlist.html#futures_global
-    :param symbol: HG00Y, 品种代码；可以通过 ak.futures_global_spot_em() 来获取所有可获取历史行情数据的品种代码
+    :param symbol: HG00Y，品种代码；可以通过 ak.futures_global_spot_em() 来获取所有可获取历史行情数据的品种代码
     :type symbol: str
     :return: 品种所属于的市场
     :rtype: str
@@ -238,7 +238,7 @@ def futures_global_hist_em(symbol: str = "HG00Y") -> pd.DataFrame:
     temp_df["涨幅"] = pd.to_numeric(temp_df["涨幅"], errors="coerce")
     temp_df["日增"] = pd.to_numeric(temp_df["日增"], errors="coerce")
     # 日增修复为有符号32位整数值
-    unsigned_max, signed_max = (2 ** 32) - 1, (2 ** 31) - 1
+    unsigned_max, signed_max = (2**32) - 1, (2**31) - 1
     mask = temp_df["日增"] > signed_max
     temp_df.loc[mask, "日增"] = temp_df.loc[mask, "日增"] - (unsigned_max + 1)
     return temp_df

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
 """
-Date: 2024/4/4 18:10
+Date: 2026/7/21 14:10
 Desc: 东方财富-数据中心-年报季报
 东方财富-数据中心-年报季报-业绩预告
 https://data.eastmoney.com/bbsj/202003/yjyg.html
@@ -18,7 +18,7 @@ def stock_yjkb_em(date: str = "20211231") -> pd.DataFrame:
     """
     东方财富-数据中心-年报季报-业绩快报
     https://data.eastmoney.com/bbsj/202003/yjkb.html
-    :param date: 财报发布日期; choice of {"20200331", "20200630", "20200930", "20201231", ...}; 从 20100331 开始
+    :param date: 财报发布日期；choice of {"20200331", "20200630", "20200930", "20201231", ...}；从 20100331 开始
     :type date: str
     :return: 业绩快报
     :rtype: pandas.DataFrame
@@ -32,7 +32,7 @@ def stock_yjkb_em(date: str = "20211231") -> pd.DataFrame:
         "reportName": "RPT_FCI_PERFORMANCEE",
         "columns": "ALL",
         "filter": f"""(SECURITY_TYPE_CODE in ("058001001","058001008"))(TRADE_MARKET_CODE!="069001017")
-        (REPORT_DATE='{'-'.join([date[:4], date[4:6], date[6:]])}')""",
+        (REPORT_DATE='{"-".join([date[:4], date[4:6], date[6:]])}')""",
     }
     r = requests.get(url, params=params)
     data_json = r.json()
@@ -136,7 +136,7 @@ def stock_yjyg_em(date: str = "20200331") -> pd.DataFrame:
     """
     东方财富-数据中心-年报季报-业绩预告
     https://data.eastmoney.com/bbsj/202003/yjyg.html
-    :param date: 财报发布日期; choice of {"20200331", "20200630", "20200930", "20201231", ...}; 从 20081231 开始
+    :param date: 财报发布日期；choice of {"20200331", "20200630", "20200930", "20201231", ...}；从 20081231 开始
     :type date: str
     :return: 业绩预告
     :rtype: pandas.DataFrame
@@ -226,7 +226,7 @@ def stock_yysj_em(symbol: str = "沪深A股", date: str = "20200331") -> pd.Data
     https://data.eastmoney.com/bbsj/202003/yysj.html
     :param symbol: choice of {'沪深A股', '沪市A股', '科创板', '深市A股', '创业板', '京市A股', 'ST板'}
     :type symbol: str
-    :param date: "20190331", "20190630", "20190930", "20191231"; 从 20081231 开始
+    :param date: "20190331", "20190630", "20190930", "20191231"；从 20081231 开始
     :type date: str
     :return: 指定时间的上市公司预约披露时间数据
     :rtype: pandas.DataFrame
@@ -240,21 +240,21 @@ def stock_yysj_em(symbol: str = "沪深A股", date: str = "20200331") -> pd.Data
         "reportName": "RPT_PUBLIC_BS_APPOIN",
         "columns": "ALL",
         "filter": f"""(SECURITY_TYPE_CODE in ("058001001","058001008"))(TRADE_MARKET_CODE!="069001017")
-        (REPORT_DATE='{'-'.join([date[:4], date[4:6], date[6:]])}')""",
+        (REPORT_DATE='{"-".join([date[:4], date[4:6], date[6:]])}')""",
     }
     if symbol == "沪市A股":
         params.update(
             {
                 "filter": f"""(SECURITY_TYPE_CODE in ("058001001","058001008"))
                 (TRADE_MARKET_CODE in ("069001001001","069001001003","069001001006"))
-                (REPORT_DATE='{'-'.join([date[:4], date[4:6], date[6:]])}')"""
+                (REPORT_DATE='{"-".join([date[:4], date[4:6], date[6:]])}')"""
             }
         )
     elif symbol == "科创板":
         params.update(
             {
                 "filter": f"""(SECURITY_TYPE_CODE in ("058001001","058001008"))(TRADE_MARKET_CODE="069001001006")
-                (REPORT_DATE='{'-'.join([date[:4], date[4:6], date[6:]])}')"""
+                (REPORT_DATE='{"-".join([date[:4], date[4:6], date[6:]])}')"""
             }
         )
     elif symbol == "深市A股":
@@ -262,28 +262,28 @@ def stock_yysj_em(symbol: str = "沪深A股", date: str = "20200331") -> pd.Data
             {
                 "filter": f"""(SECURITY_TYPE_CODE="058001001")(TRADE_MARKET_CODE in
                 ("069001002001","069001002002","069001002003","069001002005"))
-                (REPORT_DATE='{'-'.join([date[:4], date[4:6], date[6:]])}')"""
+                (REPORT_DATE='{"-".join([date[:4], date[4:6], date[6:]])}')"""
             }
         )
     elif symbol == "创业板":
         params.update(
             {
                 "filter": f"""(SECURITY_TYPE_CODE="058001001")(TRADE_MARKET_CODE="069001002002")
-                (REPORT_DATE='{'-'.join([date[:4], date[4:6], date[6:]])}')"""
+                (REPORT_DATE='{"-".join([date[:4], date[4:6], date[6:]])}')"""
             }
         )
     elif symbol == "京市A股":
         params.update(
             {
                 "filter": f"""(TRADE_MARKET_CODE="069001017")
-                (REPORT_DATE='{'-'.join([date[:4], date[4:6], date[6:]])}')"""
+                (REPORT_DATE='{"-".join([date[:4], date[4:6], date[6:]])}')"""
             }
         )
     elif symbol == "ST板":
         params.update(
             {
                 "filter": f"""(TRADE_MARKET_CODE in("069001001003","069001002005"))
-                (REPORT_DATE='{'-'.join([date[:4], date[4:6], date[6:]])}')"""
+                (REPORT_DATE='{"-".join([date[:4], date[4:6], date[6:]])}')"""
             }
         )
     r = requests.get(url, params=params)
@@ -301,32 +301,20 @@ def stock_yysj_em(symbol: str = "沪深A股", date: str = "20200331") -> pd.Data
         temp_df = pd.DataFrame(data_json["result"]["data"])
         big_df = pd.concat(objs=[big_df, temp_df], ignore_index=True)
 
-    big_df.reset_index(inplace=True)
-    big_df["index"] = range(1, len(big_df) + 1)
-    big_df.columns = [
-        "序号",
-        "股票代码",
-        "股票简称",
-        "_",
-        "_",
-        "首次预约时间",
-        "一次变更日期",
-        "二次变更日期",
-        "三次变更日期",
-        "实际披露时间",
-        "_",
-        "_",
-        "_",
-        "_",
-        "_",
-        "_",
-        "_",
-        "_",
-        "_",
-        "_",
-        "_",
-        "_",
-    ]
+    big_df.reset_index(inplace=True, drop=True)
+    big_df.insert(0, "序号", range(1, len(big_df) + 1))
+    big_df.rename(
+        columns={
+            "SECURITY_CODE": "股票代码",
+            "SECURITY_NAME_ABBR": "股票简称",
+            "FIRST_APPOINT_DATE": "首次预约时间",
+            "FIRST_CHANGE_DATE": "一次变更日期",
+            "SECOND_CHANGE_DATE": "二次变更日期",
+            "THIRD_CHANGE_DATE": "三次变更日期",
+            "ACTUAL_PUBLISH_DATE": "实际披露时间",
+        },
+        inplace=True,
+    )
     big_df = big_df[
         [
             "序号",

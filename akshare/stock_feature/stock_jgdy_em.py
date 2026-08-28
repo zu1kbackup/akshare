@@ -4,8 +4,8 @@
 date: 2022/2/14 20:02
 desc: 东方财富网-数据中心-特色数据-机构调研
 http://data.eastmoney.com/jgdy/
-东方财富网-数据中心-特色数据-机构调研-机构调研统计: http://data.eastmoney.com/jgdy/tj.html
-东方财富网-数据中心-特色数据-机构调研-机构调研详细: http://data.eastmoney.com/jgdy/xx.html
+东方财富网-数据中心-特色数据-机构调研-机构调研统计：http://data.eastmoney.com/jgdy/tj.html
+东方财富网-数据中心-特色数据-机构调研-机构调研详细：http://data.eastmoney.com/jgdy/xx.html
 """
 
 import pandas as pd
@@ -33,7 +33,7 @@ def stock_jgdy_tj_em(date: str = "20220101") -> pd.DataFrame:
         "quoteColumns": "f2~01~SECURITY_CODE~CLOSE_PRICE,f3~01~SECURITY_CODE~CHANGE_RATE",
         "source": "WEB",
         "client": "WEB",
-        "filter": f"""(NUMBERNEW="1")(IS_SOURCE="1")(NOTICE_DATE>'{'-'.join([date[:4], date[4:6], date[6:]])}')""",
+        "filter": f"""(NUMBERNEW="1")(IS_SOURCE="1")(NOTICE_DATE>'{"-".join([date[:4], date[4:6], date[6:]])}')""",
     }
     r = requests.get(url, params=params)
     data_json = r.json()
@@ -127,7 +127,7 @@ def stock_jgdy_detail_em(date: str = "20241211") -> pd.DataFrame:
         "quoteType": "0",
         "source": "WEB",
         "client": "WEB",
-        "filter": f"""(IS_SOURCE="1")(RECEIVE_START_DATE>'{'-'.join([date[:4], date[4:6], date[6:]])}')""",
+        "filter": f"""(IS_SOURCE="1")(RECEIVE_START_DATE>'{"-".join([date[:4], date[4:6], date[6:]])}')""",
     }
     r = requests.get(url, params=params)
     data_json = r.json()

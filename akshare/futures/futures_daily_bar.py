@@ -29,7 +29,7 @@ def _futures_daily_czce(
     http://www.czce.com.cn/cn/jysj/lshqxz/H770319index_1.htm
     :param date: 需要的日期
     :type date: str
-    :param dataset: 数据集的名称; 此处只需要替换 datahistory2010 中的 2010 即可
+    :param dataset: 数据集的名称；此处只需要替换 datahistory2010 中的 2010 即可
     :type dataset: str
     :return: 指定日期的所有品种行情数据
     :rtype: pandas.DataFrame
@@ -109,7 +109,7 @@ def get_cffex_daily(date: str = "20100416") -> pd.DataFrame:
     """
     中国金融期货交易所-日频率交易数据
     http://www.cffex.com.cn/rtj/
-    :param date: 交易日; 数据开始时间为 20100416
+    :param date: 交易日；数据开始时间为 20100416
     :type date: str
     :return: 日频率交易数据
     :rtype: pandas.DataFrame
@@ -199,9 +199,9 @@ def get_cffex_daily(date: str = "20100416") -> pd.DataFrame:
 def get_gfex_daily(date: str = "20221223") -> pd.DataFrame:
     """
     广州期货交易所-日频率-量价数据
-    广州期货交易所: 工业硅(上市时间: 20221222)
+    广州期货交易所：工业硅（上市时间：20221222）
     http://www.gfex.com.cn/gfex/rihq/hqsj_tjsj.shtml
-    :param date: 日期 format：YYYY-MM-DD 或 YYYYMMDD 或 datetime.date对象，默认为当前交易日
+    :param date: 日期 format: YYYY-MM-DD 或 YYYYMMDD 或 datetime.date对象，默认为当前交易日
     :type date: str or datetime.date
     :return: 广州期货交易所-日频率-量价数据
     :rtype: pandas.DataFrame
@@ -275,10 +275,10 @@ def get_gfex_daily(date: str = "20221223") -> pd.DataFrame:
 def get_ine_daily(date: str = "20241129") -> pd.DataFrame:
     """
     上海国际能源交易中心-日频率-量价数据
-    上海国际能源交易中心: 原油期货(上市时间: 20180326); 20号胶期货(上市时间: 20190812)
+    上海国际能源交易中心：原油期货（上市时间：20180326）；20号胶期货（上市时间：20190812）
     trade_price: https://www.ine.cn/statements/daily/?paramid=kx
     trade_note: https://www.ine.cn/data/datanote.dat
-    :param date: 日期 format：YYYY-MM-DD 或 YYYYMMDD 或 datetime.date对象，默认为当前交易日
+    :param date: 日期 format: YYYY-MM-DD 或 YYYYMMDD 或 datetime.date对象，默认为当前交易日
     :type date: str or datetime.date
     :return: 上海国际能源交易中心-日频率-量价数据
     :rtype: pandas.DataFrame or None
@@ -342,7 +342,7 @@ def get_czce_daily(date: str = "20050525") -> pd.DataFrame:
     """
     郑州商品交易所-日频率-量价数据
     http://www.czce.com.cn/cn/jysj/mrhq/H770301index_1.htm
-    :param date: 日期 format：YYYY-MM-DD 或 YYYYMMDD 或 datetime.date 对象，默认为当前交易日; 日期需要大于 20100824
+    :param date: 日期 format: YYYY-MM-DD 或 YYYYMMDD 或 datetime.date 对象，默认为当前交易日；日期需要大于 20100824
     :type date: str or datetime.date
     :return: 郑州商品交易所-日频率-量价数据
     :rtype: pandas.DataFrame
@@ -454,7 +454,7 @@ def get_shfe_daily(date: str = "20220415") -> pd.DataFrame:
     """
     上海期货交易所-日频率-量价数据
     https://tsite.shfe.com.cn/statements/dataview.html?paramid=kx
-    :param date: 日期 format：YYYY-MM-DD 或 YYYYMMDD 或 datetime.date对象, 默认为当前交易日
+    :param date: 日期 format: YYYY-MM-DD 或 YYYYMMDD 或 datetime.date对象，默认为当前交易日
     :type date: str or datetime.date
     :return: 上海期货交易所-日频率-量价数据
     :rtype: pandas.DataFrame or None
@@ -528,7 +528,7 @@ def get_dce_daily(date: str = "20251027") -> pd.DataFrame:
     """
     大连商品交易所日交易数据
     http://www.dce.com.cn/dalianshangpin/xqsj/tjsj26/rtj/rxq/index.html
-    :param date: 交易日, e.g., 20200416
+    :param date: 交易日，e.g., 20200416
     :type date: str
     :return: 具体交易日的个品种行情数据
     :rtype: pandas.DataFrame
@@ -549,23 +549,26 @@ def get_dce_daily(date: str = "20251027") -> pd.DataFrame:
     }
     r = requests.post(url, json=payload)
     data_json = r.json()
-    temp_df = pd.DataFrame(data_json['data'])
-    temp_df.rename(columns={
-        "variety": "品种名称",
-        "contractId": "合约",
-        "open": "开盘价",
-        "high": "最高价",
-        "low": "最低价",
-        "close": "收盘价",
-        "lastClear": "前结算价",
-        "clearPrice": "结算价",
-        "diff": "涨跌",
-        "diff1": "涨跌1",
-        "volumn": "成交量",
-        "openInterest": "持仓量",
-        "diffI": "持仓量变化",
-        "turnover": "成交额",
-    }, inplace=True)
+    temp_df = pd.DataFrame(data_json["data"])
+    temp_df.rename(
+        columns={
+            "variety": "品种名称",
+            "contractId": "合约",
+            "open": "开盘价",
+            "high": "最高价",
+            "low": "最低价",
+            "close": "收盘价",
+            "lastClear": "前结算价",
+            "clearPrice": "结算价",
+            "diff": "涨跌",
+            "diff1": "涨跌1",
+            "volumn": "成交量",
+            "openInterest": "持仓量",
+            "diffI": "持仓量变化",
+            "turnover": "成交额",
+        },
+        inplace=True,
+    )
     temp_df = temp_df[~temp_df["品种名称"].str.contains("小计")]
     temp_df = temp_df[~temp_df["品种名称"].str.contains("总计")]
     temp_df["variety"] = temp_df["品种名称"].map(lambda x: cons.DCE_MAP[x])
@@ -638,11 +641,11 @@ def get_futures_daily(
 ) -> pd.DataFrame:
     """
     交易所日交易数据
-    :param start_date: 开始日期 format：YYYY-MM-DD 或 YYYYMMDD 或 datetime.date对象 为空时为当天
+    :param start_date: 开始日期 format: YYYY-MM-DD 或 YYYYMMDD 或 datetime.date对象 为空时为当天
     :type start_date: str
-    :param end_date: 结束数据 format：YYYY-MM-DD 或 YYYYMMDD 或 datetime.date对象 为空时为当天
+    :param end_date: 结束数据 format: YYYY-MM-DD 或 YYYYMMDD 或 datetime.date对象 为空时为当天
     :type end_date: str
-    :param market: 'CFFEX' 中金所, 'CZCE' 郑商所,  'SHFE' 上期所, 'DCE' 大商所 之一, 'INE' 上海国际能源交易中心, "GFEX" 广州期货交易所。默认为中金所
+    :param market: 'CFFEX' 中金所，'CZCE' 郑商所，'SHFE' 上期所，'DCE' 大商所 之一，'INE' 上海国际能源交易中心，"GFEX" 广州期货交易所。默认为中金所
     :type market: str
     :return: 交易所日交易数据
     :rtype: pandas.DataFrame
@@ -691,6 +694,63 @@ def get_futures_daily(
         return pd.DataFrame()
 
 
+def futures_hist_daily_cffex(date: str = "20260403") -> pd.DataFrame:
+    """
+    中国金融期货交易所-交易所日交易数据
+    http://www.cffex.com.cn/cn/rtj.html
+    :param date: 交易日
+    :type date: str
+    :return: 交易所日交易数据
+    :rtype: pandas.DataFrame
+    """
+    url = f"http://www.cffex.com.cn/sj/hqsj/rtj/{date[:6]}/{date[6:]}/{date}_1.csv"
+    data_df = pd.read_csv(url, encoding="gbk")
+    data_df = data_df[data_df["合约代码"] != "小计"]
+    data_df = data_df[data_df["合约代码"] != "合计"]
+    data_df = data_df[~data_df["合约代码"].str.contains("IO")]
+    data_df = data_df[~data_df["合约代码"].str.contains("MO")]
+    data_df = data_df[~data_df["合约代码"].str.contains("HO")]
+    data_df.reset_index(inplace=True, drop=True)
+    data_df["合约代码"] = data_df["合约代码"].str.strip()
+    symbol_list = data_df["合约代码"].to_list()
+    variety_list = [re.compile(r"[a-zA-Z_]+").findall(item)[0] for item in symbol_list]
+    data_df.columns = [
+        "symbol",
+        "open",
+        "high",
+        "low",
+        "volume",
+        "turnover",
+        "open_interest",
+        "_",
+        "close",
+        "settle",
+        "pre_settle",
+        "_",
+        "_",
+        "_",
+    ]
+    data_df["date"] = date
+    data_df["variety"] = variety_list
+    data_df = data_df[
+        [
+            "symbol",
+            "date",
+            "open",
+            "high",
+            "low",
+            "close",
+            "volume",
+            "open_interest",
+            "turnover",
+            "settle",
+            "pre_settle",
+            "variety",
+        ]
+    ]
+    return data_df
+
+
 if __name__ == "__main__":
     get_futures_daily_df = get_futures_daily(
         start_date="20250708", end_date="20250708", market="DCE"
@@ -700,7 +760,7 @@ if __name__ == "__main__":
     get_dce_daily_df = get_dce_daily(date="20251029")
     print(get_dce_daily_df)
 
-    get_cffex_daily_df = get_cffex_daily(date="20230810")
+    get_cffex_daily_df = get_cffex_daily(date="20260401")
     print(get_cffex_daily_df)
 
     get_ine_daily_df = get_ine_daily(date="20230818")
@@ -714,3 +774,6 @@ if __name__ == "__main__":
 
     get_gfex_daily_df = get_gfex_daily(date="20221228")
     print(get_gfex_daily_df)
+
+    futures_hist_daily_cffex_df = futures_hist_daily_cffex(date="20260302")
+    print(futures_hist_daily_cffex_df)

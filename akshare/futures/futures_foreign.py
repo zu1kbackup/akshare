@@ -21,7 +21,7 @@ def futures_foreign_hist(symbol: str = "ZSD") -> pd.DataFrame:
     """
     外盘期货-历史行情数据-日频率
     https://finance.sina.com.cn/money/future/hf.html
-    :param symbol: 外盘期货代码, 可以通过 ak.futures_foreign_commodity_subscribe_exchange_symbol() 来获取所有品种代码
+    :param symbol: 外盘期货代码，可以通过 ak.futures_foreign_commodity_subscribe_exchange_symbol() 来获取所有品种代码
     :type symbol: str
     :return: 历史行情数据-日频率
     :rtype: pandas.DataFrame
@@ -45,7 +45,7 @@ def futures_foreign_hist(symbol: str = "ZSD") -> pd.DataFrame:
 def futures_foreign_detail(symbol: str = "ZSD") -> pd.DataFrame:
     """
     foreign futures contract detail data
-    :param symbol: futures symbol, you can get it from hf_subscribe_exchange_symbol function
+    :param symbol: futures symbol, you can get it from ak.futures_hq_subscribe_exchange_symbol function
     :type symbol: str
     :return: contract detail
     :rtype: pandas.DataFrame
@@ -59,7 +59,7 @@ def futures_foreign_detail(symbol: str = "ZSD") -> pd.DataFrame:
 
 
 if __name__ == "__main__":
-    futures_foreign_hist_df = futures_foreign_hist(symbol="ZSD")
+    futures_foreign_hist_df = futures_foreign_hist(symbol="JY")
     print(futures_foreign_hist_df)
 
     subscribes = futures_foreign_commodity_subscribe_exchange_symbol()
@@ -67,3 +67,7 @@ if __name__ == "__main__":
     for item in subscribes:
         futures_foreign_detail_df = futures_foreign_detail(symbol=item)
         print(futures_foreign_detail_df)
+
+    for item in subscribes:
+        futures_foreign_hist_df = futures_foreign_hist(symbol=item)
+        print(futures_foreign_hist_df)
